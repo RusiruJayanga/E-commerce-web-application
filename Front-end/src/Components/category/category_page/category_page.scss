@@ -1,0 +1,131 @@
+:root {
+  --background-color: #251a14;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 280px);
+  gap: 30px;
+  margin-top: 100px;
+  justify-content: center;
+}
+.card {
+  width: min(280px, 100%);
+  position: relative;
+  color: white;
+  margin-bottom: 50px;
+}
+.card-brand {
+  background-color: var(--background-color);
+  width: 60%;
+  height: 50px;
+  color: white;
+  font-weight: 300;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 20px;
+  padding: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.card .card-brand img {
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.card-brand .name {
+  font-weight: 300;
+  margin-top: 5px;
+}
+.card-image {
+  background-color: var(--background-color);
+  height: 200px;
+  width: 280px;
+  text-align: center;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+}
+.card .card-image img {
+  width: 70%;
+  transition: 500ms ease-out;
+  margin-top: 20px;
+  object-fit: cover;
+  overflow: hidden;
+}
+.card .card-image img:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+.card-info {
+  background-color: var(--background-color);
+  padding: 30px;
+  width: 280px;
+  height: 120px;
+  text-align: left;
+}
+.card-info .name {
+  font-size: 20px;
+  color: #eab676;
+}
+.card-more {
+  background-color: var(--background-color);
+  padding: 0 30px 30px;
+  width: 280px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.card-wish-button {
+  display: flex;
+  justify-content: center;
+  background-color: #f0efeb;
+  align-items: center;
+}
+.card-wish-img {
+  width: 20px;
+  height: 20px;
+}
+.card .card-more .buttons button:nth-child(1) {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.card .card-more .buttons button:nth-child(2) {
+  border-radius: 20px;
+  padding: 0 20px;
+}
+.card-options {
+  color: #eab676;
+}
+.card::before {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 50px;
+  content: "";
+  border-bottom-left-radius: 20px;
+  box-shadow: -20px 20px 0 var(--background-color);
+}
+.card::after {
+  background-color: orangered;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px;
+  content: "HOT";
+  font-size: 18px;
+  width: calc(40% - 10px);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+}

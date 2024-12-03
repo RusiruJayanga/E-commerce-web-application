@@ -1,0 +1,110 @@
+.product_details-con {
+  width: 83%;
+  height: 400px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+}
+
+.product_details-image {
+  width: 400px;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid #873e23;
+  background-color: #f0efeb;
+  border-radius: 10px;
+}
+
+.product_details-details {
+  width: 600px;
+  height: 400px;
+  padding: 10px;
+}
+
+.product_details-button {
+  width: 200px;
+  display: flex;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  justify-content: space-around;
+}
+
+.product_details-wish-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f0efeb;
+  border: 1px solid #873e23;
+  transition: 300ms ease-out;
+}
+
+.product_details-wish-button:hover {
+  background-color: white;
+}
+
+.product_details-wish-img {
+  width: 20px;
+  height: 20px;
+}
+
+.product_details-cart-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 110px;
+  height: 40px;
+  font-size: 15px;
+  color: white;
+  background-color: #873e23;
+  border: 1px solid #873e23;
+  transition: 300ms ease-out;
+  border-radius: 3px;
+}
+
+.product_details-cart-button:hover {
+  background-color: white;
+  color: #873e23;
+}
+
+.product_details-list {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.product_details-top {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 1030px) {
+  .product_details-con {
+    width: 100%;
+    height: auto;
+  }
+}
+@media only screen and (max-width: 915px) {
+  .product_details-con {
+    width: auto;
+  }
+  .product_details-image {
+    width: 250px;
+    height: 250px;
+  }
+  .product_details-details {
+    height: auto;
+  }
+}
+@media only screen and (max-width: 712px) {
+  .product_details-con {
+    display: block;
+  }
+  .product_details-image {
+    width: 100%;
+    height: auto;
+  }
+  .product_details-details {
+    width: auto;
+  }
+}/*# sourceMappingURL=product_details.css.map */
