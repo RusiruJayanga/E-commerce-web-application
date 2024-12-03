@@ -12,6 +12,8 @@ import Account from "./Pages/account/Account";
 import Search from "./Pages/search_page/Search_page";
 import Contact from "./Pages/contact/Contact";
 import Product_details from "./Pages/product_details/Product_details";
+import Seller_navbar from "./Components/seller_components/seller_nav-bar/Seller_nav-bar";
+import Add_product from "./Pages/seller/add_product/Add_product";
 
 const App = () => {
   return (
@@ -27,12 +29,17 @@ const App = () => {
           "Contact",
           "Wish_list",
           "Cart",
-          "Account",
+          "Accoun",
           "Search",
           "Product_details",
         ].map((path) => (
           <Route path={path} element={<Navbar />} />
         ))}
+        {["Account", "Add_product", "", "", "", "", "", "", "", "", ""].map(
+          (path) => (
+            <Route path={path} element={<Seller_navbar />} />
+          )
+        )}
       </Routes>
       {/* Pages */}
       <Routes>
@@ -47,6 +54,7 @@ const App = () => {
         <Route path="/Account" element={<Account />} />
         <Route path="/Search" element={<Search />} />
         <Route path="/Product_details" element={<Product_details />} />
+        <Route path="/Add_product" element={<Add_product />} />
       </Routes>
     </div>
   );
