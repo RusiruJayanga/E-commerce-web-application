@@ -1,0 +1,89 @@
+.delivered-container {
+  width: 100%;
+  margin-top: 60px;
+  background: #fff;
+}
+.delivered-tbl {
+  width: 100%;
+  border-collapse: collapse;
+}
+.delivered-tbl thead {
+  background: #424949;
+  color: #fff;
+}
+.delivered-tbl thead tr th {
+  font-size: 0.9rem;
+  padding: 0.8rem;
+  letter-spacing: 0.2rem;
+  vertical-align: top;
+  border: 1px solid #aab7b8;
+}
+.delivered-tbl tbody tr td {
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  font-weight: normal;
+  text-align: center;
+  border: 1px solid #aab7b8;
+  padding: 0.8rem;
+}
+.delivered-tbl tr:nth-child(even) {
+  background: #ccc;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+}
+.delivered-tbl tr:hover td {
+  background: #839192;
+  color: #000;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+}
+.delivered-tbl button {
+  display: inline-block;
+  border: none;
+  margin: 0 auto;
+  padding: 0.4rem;
+  border-radius: 1px;
+  outline: none;
+  cursor: pointer;
+}
+.delivered-btn_trash {
+  background: #e74c3c;
+  color: #fff;
+}
+.delivered-btn_edit {
+  color: #fff;
+  background: #1e8449;
+}
+@media (max-width: 768px) {
+  .delivered-tbl thead {
+    display: none;
+  }
+  .delivered-tbl tr,
+  .delivered-tbl td {
+    display: block;
+    width: 100%;
+  }
+  .delivered-tbl tr {
+    margin-bottom: 1rem;
+  }
+  .delivered-tbl tbody tr td {
+    text-align: right;
+    position: relative;
+    transition: all 0.2s ease-in;
+  }
+  .delivered-tbl td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 1.2rem;
+    text-align: left;
+  }
+  .delivered-tbl tbody tr td:hover {
+    background: #ccc;
+    color: #000;
+  }
+  .delivered-tbl_content {
+    padding: 1rem;
+  }
+}

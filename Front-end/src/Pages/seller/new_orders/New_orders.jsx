@@ -1,12 +1,13 @@
 import React from "react";
+import "./new_orders.css";
 import Footer from "../../../Components/footer/Footer";
 
 const New_orders = () => {
   return (
     <div>
-      <div class="all-product-container">
-        <div className="all-product-tbl_content">
-          <table className="all-product-tbl">
+      <div class="new-order-container">
+        <div className="new-order-tbl_content">
+          <table className="new-order-tbl">
             <thead>
               <tr>
                 <th>User ID</th>
@@ -26,10 +27,10 @@ const New_orders = () => {
                 <td data-label="Email">John@gmail.com</td>
                 <td data-label="Status">Active</td>
                 <td data-label="Edit">
-                  <button className="all-product-btn_edit"></button>
+                  <button className="new-order-btn_edit"></button>
                 </td>
                 <td data-label="Delete">
-                  <button className="all-product-btn_trash"></button>
+                  <button className="new-order-btn_trash"></button>
                 </td>
               </tr>
               {/* Repeat end */}

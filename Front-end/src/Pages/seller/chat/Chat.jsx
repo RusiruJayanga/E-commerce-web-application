@@ -1,13 +1,13 @@
 import React from "react";
-
+import "./chat.css";
 import Footer from "../../../Components/footer/Footer";
 
 const Chat = () => {
   return (
     <div>
-      <div class="all-product-container">
-        <div className="all-product-tbl_content">
-          <table className="all-product-tbl">
+      <div class="seller-chat-container">
+        <div className="seller-chat-tbl_content">
+          <table className="seller-chat-tbl">
             <thead>
               <tr>
                 <th>User ID</th>
@@ -27,10 +27,10 @@ const Chat = () => {
                 <td data-label="Email">John@gmail.com</td>
                 <td data-label="Status">Active</td>
                 <td data-label="Edit">
-                  <button className="all-product-btn_edit"></button>
+                  <button className="seller-chat-btn_edit"></button>
                 </td>
                 <td data-label="Delete">
-                  <button className="all-product-btn_trash"></button>
+                  <button className="seller-chat-btn_trash"></button>
                 </td>
               </tr>
               {/* Repeat end */}

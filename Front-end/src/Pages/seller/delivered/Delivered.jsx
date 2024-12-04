@@ -1,12 +1,13 @@
 import React from "react";
+import "./delivered.css";
 import Footer from "../../../Components/footer/Footer";
 
 const Delivered = () => {
   return (
     <div>
-      <div class="all-product-container">
-        <div className="all-product-tbl_content">
-          <table className="all-product-tbl">
+      <div class="delivered-container">
+        <div className="delivered-tbl_content">
+          <table className="delivered-tbl">
             <thead>
               <tr>
                 <th>User ID</th>
@@ -26,10 +27,10 @@ const Delivered = () => {
                 <td data-label="Email">John@gmail.com</td>
                 <td data-label="Status">Active</td>
                 <td data-label="Edit">
-                  <button className="all-product-btn_edit"></button>
+                  <button className="delivered-btn_edit"></button>
                 </td>
                 <td data-label="Delete">
-                  <button className="all-product-btn_trash"></button>
+                  <button className="delivered-btn_trash"></button>
                 </td>
               </tr>
               {/* Repeat end */}
