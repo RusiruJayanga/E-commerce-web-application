@@ -1,8 +1,7 @@
 import React from "react";
-import "./seller_home.css";
 import Footer from "../../../Components/footer/Footer";
 
-const Seller_home = () => {
+const Delivered = () => {
   return (
     <div>
       <div class="all-product-container">
@@ -34,21 +33,6 @@ const Seller_home = () => {
                 </td>
               </tr>
               {/* Repeat end */}
-              {}
-              <tr>
-                <td data-label="User Id">0001</td>
-                <td data-label="User Id">0001</td>
-                <td data-label="Name">John Doe</td>
-                <td data-label="Email">John@gmail.com</td>
-                <td data-label="Status">Active</td>
-                <td data-label="Edit">
-                  <button className="all-product-btn_edit"></button>
-                </td>
-                <td data-label="Delete">
-                  <button className="all-product-btn_trash"></button>
-                </td>
-              </tr>
-              {}
             </tbody>
           </table>
         </div>
@@ -59,4 +43,4 @@ const Seller_home = () => {
   );
 };
 
-export default Seller_home;
+export default Delivered;

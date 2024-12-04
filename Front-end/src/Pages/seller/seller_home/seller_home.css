@@ -1,29 +1,20 @@
-.container {
-  max-width: 1440px;
+.all-product-container {
   width: 100%;
+  margin-top: 60px;
   background: #fff;
-  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.container h2 {
-  padding: 2rem 1rem;
-  text-align: center;
-  /* background: #e74c3c; */
-  /* color: #fff; */
-  font-size: 2.5rem;
-}
-
-.tbl {
+.all-product-tbl {
   width: 100%;
   border-collapse: collapse;
 }
 
-.tbl thead {
+.all-product-tbl thead {
   background: #424949;
   color: #fff;
 }
 
-.tbl thead tr th {
+.all-product-tbl thead tr th {
   font-size: 0.9rem;
   padding: 0.8rem;
   letter-spacing: 0.2rem;
@@ -31,7 +22,7 @@
   border: 1px solid #aab7b8;
 }
 
-.tbl tbody tr td {
+.all-product-tbl tbody tr td {
   font-size: 1rem;
   letter-spacing: 0.2rem;
   font-weight: normal;
@@ -40,20 +31,20 @@
   padding: 0.8rem;
 }
 
-.tbl tr:nth-child(even) {
+.all-product-tbl tr:nth-child(even) {
   background: #ccc;
   transition: all 0.3s ease-in;
   cursor: pointer;
 }
 
-.tbl tr:hover td {
+.all-product-tbl tr:hover td {
   background: #839192;
   color: #000;
   transition: all 0.3s ease-in;
   cursor: pointer;
 }
 
-.tbl button {
+.all-product-tbl button {
   display: inline-block;
   border: none;
   margin: 0 auto;
@@ -63,34 +54,34 @@
   cursor: pointer;
 }
 
-.btn_trash {
+.all-product-btn_trash {
   background: #e74c3c;
   color: #fff;
 }
 
-.btn_edit {
+.all-product-btn_edit {
   color: #fff;
   background: #1e8449;
 }
 
 @media (max-width: 768px) {
-  .tbl thead {
+  .all-product-tbl thead {
     display: none;
   }
-  .tbl tr,
-  .tbl td {
+  .all-product-tbl tr,
+  .all-product-tbl td {
     display: block;
     width: 100%;
   }
-  .tbl tr {
+  .all-product-tbl tr {
     margin-bottom: 1rem;
   }
-  .tbl tbody tr td {
+  .all-product-tbl tbody tr td {
     text-align: right;
     position: relative;
     transition: all 0.2s ease-in;
   }
-  .tbl td::before {
+  .all-product-tbl td::before {
     content: attr(data-label);
     position: absolute;
     left: 0;
@@ -98,11 +89,11 @@
     padding-left: 1.2rem;
     text-align: left;
   }
-  .tbl tbody tr td:hover {
+  .all-product-tbl tbody tr td:hover {
     background: #ccc;
     color: #000;
   }
-  .tbl_content {
+  .all-product-tbl_content {
     padding: 1rem;
   }
 }/*# sourceMappingURL=seller_home.css.map */

@@ -11,7 +11,7 @@ const Seller_nav = () => {
       <div className="hedder-section">
         <div className="hedder">Green Shopping</div>
         <div className="hedder-right">
-          <Link to="/Account">
+          <Link to="/Seller_profile">
             <img className="hedder-button" src="user-account.png" alt="" />
           </Link>
         </div>
@@ -41,16 +41,22 @@ const Seller_nav = () => {
             <NavLink to="/Add_product">ADD PRODUCT</NavLink>
           </li>
           <li
+            onClick={() => set_manue("New_orders")}
+            className={manu === "New_orders" ? "active" : ""}
+          >
+            <NavLink to="/New_orders">NEW ORDERS</NavLink>
+          </li>
+          <li
+            onClick={() => set_manue("Delivered")}
+            className={manu === "Delivered" ? "active" : ""}
+          >
+            <NavLink to="/Delivered">DELIVERED</NavLink>
+          </li>
+          <li
             onClick={() => set_manue("Chat")}
             className={manu === "Chat" ? "active" : ""}
           >
             <NavLink to="/Chat">CHAT</NavLink>
-          </li>
-          <li
-            onClick={() => set_manue("Orders")}
-            className={manu === "Orders" ? "active" : ""}
-          >
-            <NavLink to="/Orders">ORDERS</NavLink>
           </li>
         </ul>
         {}

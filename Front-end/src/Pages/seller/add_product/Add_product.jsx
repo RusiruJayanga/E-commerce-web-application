@@ -5,7 +5,7 @@ import Footer from "../../../Components/footer/Footer";
 const Add_product = () => {
   return (
     <div>
-      {/* Contact section */}
+      {/* Add section */}
       <div className="product-add-con">
         <h3 className="text-hili">Send us a message</h3>
         <p>

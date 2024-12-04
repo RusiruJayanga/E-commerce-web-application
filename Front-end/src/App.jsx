@@ -15,6 +15,10 @@ import Product_details from "./Pages/product_details/Product_details";
 import Seller_nav from "./Components/seller_components/seller_nav-bar/Seller_nav";
 import Add_product from "./Pages/seller/add_product/Add_product";
 import Seller_home from "./Pages/seller/seller_home/Seller_home";
+import Chat from "./Pages/seller/chat/Chat";
+import New_orders from "./Pages/seller/new_orders/New_orders";
+import Delivered from "./Pages/seller/delivered/Delivered";
+import Seller_profile from "./Pages/seller/seller_profile/Seller_profile";
 
 const App = () => {
   return (
@@ -41,10 +45,10 @@ const App = () => {
           "Account",
           "Add_product",
           "Seller_home",
-          "",
-          "",
-          "",
-          "",
+          "Chat",
+          "New_orders",
+          "Delivered",
+          "Seller_profile",
           "",
           "",
           "",
@@ -68,6 +72,10 @@ const App = () => {
         <Route path="/Product_details" element={<Product_details />} />
         <Route path="/Add_product" element={<Add_product />} />
         <Route path="/Seller_home" element={<Seller_home />} />
+        <Route path="/Chat" element={<Chat />} />
+        <Route path="/New_orders" element={<New_orders />} />
+        <Route path="/Delivered" element={<Delivered />} />
+        <Route path="/Seller_profile" element={<Seller_profile />} />
       </Routes>
     </div>
   );
