@@ -12,8 +12,9 @@ import Account from "./Pages/account/Account";
 import Search from "./Pages/search_page/Search_page";
 import Contact from "./Pages/contact/Contact";
 import Product_details from "./Pages/product_details/Product_details";
-import Seller_navbar from "./Components/seller_components/seller_nav-bar/Seller_nav-bar";
+import Seller_nav from "./Components/seller_components/seller_nav-bar/Seller_nav";
 import Add_product from "./Pages/seller/add_product/Add_product";
+import Seller_home from "./Pages/seller/seller_home/Seller_home";
 
 const App = () => {
   return (
@@ -35,11 +36,22 @@ const App = () => {
         ].map((path) => (
           <Route path={path} element={<Navbar />} />
         ))}
-        {["Account", "Add_product", "", "", "", "", "", "", "", "", ""].map(
-          (path) => (
-            <Route path={path} element={<Seller_navbar />} />
-          )
-        )}
+        {/* Nav bar */}
+        {[
+          "Account",
+          "Add_product",
+          "Seller_home",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ].map((path) => (
+          <Route path={path} element={<Seller_nav />} />
+        ))}
       </Routes>
       {/* Pages */}
       <Routes>
@@ -55,6 +67,7 @@ const App = () => {
         <Route path="/Search" element={<Search />} />
         <Route path="/Product_details" element={<Product_details />} />
         <Route path="/Add_product" element={<Add_product />} />
+        <Route path="/Seller_home" element={<Seller_home />} />
       </Routes>
     </div>
   );

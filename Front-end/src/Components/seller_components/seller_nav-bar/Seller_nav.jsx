@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../../Nav-bar/Nav-bar.css";
 
-const Navbar = () => {
+const Seller_nav = () => {
   const [manu, set_manue] = useState("Seller_home");
   const [menuOpen, set_menu_open] = useState(false);
   return (
@@ -60,4 +60,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Seller_nav;

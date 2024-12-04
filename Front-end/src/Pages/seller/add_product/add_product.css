@@ -5,13 +5,16 @@
   justify-content: space-between;
   margin-top: 100px;
 }
+
 .product-add-right-side {
   width: 75%;
   margin-left: 75px;
 }
+
 .gap {
   margin-top: 20px;
 }
+
 .product-add-input-box {
   height: 50px;
   width: 100%;
@@ -19,6 +22,7 @@
   border: 1px solid #c29d7b;
   border-radius: 5px;
 }
+
 .product-add-input-box input,
 .product-add-input-box textarea {
   height: 100%;
@@ -30,12 +34,15 @@
   padding: 0 15px;
   resize: none;
 }
+
 .product-add-message-box {
   min-height: 110px;
 }
+
 .product-add-input-box textarea {
   padding-top: 6px;
 }
+
 .product-add-button {
   margin-top: 12px;
   width: 110px;
@@ -47,14 +54,16 @@
   background-color: #873e23;
   transition: 300ms ease-out;
 }
+
 .product-add-button:hover {
   background-color: white;
   color: #873e23;
 }
+
 @media (max-width: 820px) {
   .product-add-con {
     width: 100%;
     flex-direction: column-reverse;
     margin-top: 50px;
   }
-}
+}/*# sourceMappingURL=add_product.css.map */

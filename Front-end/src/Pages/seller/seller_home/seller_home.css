@@ -4,6 +4,7 @@
   background: #fff;
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
 }
+
 .container h2 {
   padding: 2rem 1rem;
   text-align: center;
@@ -11,14 +12,17 @@
   /* color: #fff; */
   font-size: 2.5rem;
 }
+
 .tbl {
   width: 100%;
   border-collapse: collapse;
 }
+
 .tbl thead {
   background: #424949;
   color: #fff;
 }
+
 .tbl thead tr th {
   font-size: 0.9rem;
   padding: 0.8rem;
@@ -26,6 +30,7 @@
   vertical-align: top;
   border: 1px solid #aab7b8;
 }
+
 .tbl tbody tr td {
   font-size: 1rem;
   letter-spacing: 0.2rem;
@@ -34,17 +39,20 @@
   border: 1px solid #aab7b8;
   padding: 0.8rem;
 }
+
 .tbl tr:nth-child(even) {
   background: #ccc;
   transition: all 0.3s ease-in;
   cursor: pointer;
 }
+
 .tbl tr:hover td {
   background: #839192;
   color: #000;
   transition: all 0.3s ease-in;
   cursor: pointer;
 }
+
 .tbl button {
   display: inline-block;
   border: none;
@@ -54,14 +62,17 @@
   outline: none;
   cursor: pointer;
 }
+
 .btn_trash {
   background: #e74c3c;
   color: #fff;
 }
+
 .btn_edit {
   color: #fff;
   background: #1e8449;
 }
+
 @media (max-width: 768px) {
   .tbl thead {
     display: none;
@@ -94,4 +105,4 @@
   .tbl_content {
     padding: 1rem;
   }
-}
+}/*# sourceMappingURL=seller_home.css.map */
