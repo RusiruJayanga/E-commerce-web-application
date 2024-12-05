@@ -19,12 +19,17 @@ import Chat from "./Pages/seller/chat/Chat";
 import New_orders from "./Pages/seller/new_orders/New_orders";
 import Delivered from "./Pages/seller/delivered/Delivered";
 import Seller_profile from "./Pages/seller/seller_profile/Seller_profile";
+import Seller_signup from "./Pages/seller/seller_signup/Seller_signup";
+import Log_sign_navbar from "./Components/login_signup-nav/Log_sign_navbar";
+import Seller_login from "./Pages/seller/seller_login/Seller_login";
+import Signup from "./Pages/signup/Signup";
+import Login from "./Pages/login/Login";
 
 const App = () => {
   return (
     <div className="App">
-      {/* Nav bar */}
       <Routes>
+        {/* Customer nav bar */}
         {[
           "",
           "Men",
@@ -40,21 +45,26 @@ const App = () => {
         ].map((path) => (
           <Route path={path} element={<Navbar />} />
         ))}
-        {/* Nav bar */}
+        {/* Seller nav bar */}
         {[
-          "Account",
           "Add_product",
           "Seller_home",
           "Chat",
           "New_orders",
           "Delivered",
           "Seller_profile",
-          "",
-          "",
-          "",
-          "",
         ].map((path) => (
           <Route path={path} element={<Seller_nav />} />
+        ))}
+        {/* Account nav bar */}
+        {[
+          "Signup",
+          "Customer_login",
+          "Login",
+          "Seller_signup",
+          "Seller_login",
+        ].map((path) => (
+          <Route path={path} element={<Log_sign_navbar />} />
         ))}
       </Routes>
       {/* Pages */}
@@ -67,7 +77,11 @@ const App = () => {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Wish_list" element={<Wish_list />} />
         <Route path="/Cart" element={<Cart />} />
-        <Route path="/Account" element={<Seller_home />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Seller_login" element={<Seller_login />} />
+        <Route path="/Seller_signup" element={<Seller_signup />} />
+        <Route path="/Customer_login" element={<Login />} />
         <Route path="/Search" element={<Search />} />
         <Route path="/Product_details" element={<Product_details />} />
         <Route path="/Add_product" element={<Add_product />} />
@@ -75,7 +89,7 @@ const App = () => {
         <Route path="/Chat" element={<Chat />} />
         <Route path="/New_orders" element={<New_orders />} />
         <Route path="/Delivered" element={<Delivered />} />
-        <Route path="/Seller_profile" element={<Seller_profile />} />
+        <Route path="/Seller_profile" element={<Seller_login />} />
       </Routes>
     </div>
   );

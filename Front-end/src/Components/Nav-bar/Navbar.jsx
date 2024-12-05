@@ -14,7 +14,7 @@ const Navbar = () => {
           <Link to="/Search">
             <img className="hedder-button" src="search-icon.png" alt="" />
           </Link>
-          <Link to="/Account">
+          <Link to="/Login">
             <img className="hedder-button" src="user-account.png" alt="" />
           </Link>
           <Link to="/Wish_list">

@@ -10,7 +10,7 @@ const ECommerceSchema = new mongoose.Schema({
   Quantity: { type: Number, required: true },
   ForWho: { type: String, required: true },
   Category: { type: String, required: true },
-  ImageFile: { type: String },
+  ImageFile: { type: String, required: true },
 });
 
 const ECommerceModel =
