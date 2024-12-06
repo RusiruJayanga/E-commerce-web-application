@@ -1,5 +1,5 @@
 import express from "express";
-import { AddProductController } from "../controllers/E_commerce_platform_controller.js";
+import { AddProduct } from "../controllers/E_commerce_platform_controller.js";
 import multer from "multer";
 
 const ECommerceRouter = express.Router();
@@ -14,6 +14,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-ECommerceRouter.post("/add", upload.single("image"), AddProductController);
+ECommerceRouter.post("/add", upload.single("image"), AddProduct);
 
 export default ECommerceRouter;

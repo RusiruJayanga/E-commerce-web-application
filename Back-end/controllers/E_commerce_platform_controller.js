@@ -4,7 +4,7 @@ import fs from "fs";
 
 //Add product
 
-const AddProductController = async (req, res) => {
+const AddProduct = async (req, res) => {
   let image_flieName = `${req.file.filename}`;
   const ECommerce = new ECommerceModel({
     ProductName: req.body.ProductName,
@@ -20,11 +20,11 @@ const AddProductController = async (req, res) => {
   });
   try {
     await ECommerce.save();
-    res.jason({ success: true, message: "Product is added" });
+    res.json({ success: true, message: "Product is added" });
   } catch (error) {
     console.log(error);
-    res.jason({ success: false, massage: "Failed" });
+    res.json({ success: false, massage: "Failed" });
   }
 };
 
-export { AddProductController };
+export { AddProduct };

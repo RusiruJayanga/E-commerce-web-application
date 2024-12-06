@@ -5,7 +5,7 @@ const ECommerceSchema = new mongoose.Schema({
   ShortDescription: { type: String, required: true },
   LongDescription: { type: String, required: true },
   Price: { type: Number, required: true },
-  Discount: { type: Number },
+  Discount: { type: Number, required: true },
   Advertise: { type: String, required: true },
   Quantity: { type: Number, required: true },
   ForWho: { type: String, required: true },
@@ -14,6 +14,6 @@ const ECommerceSchema = new mongoose.Schema({
 });
 
 const ECommerceModel =
-  mongoose.model.ECommerce || mongoose.model("ECommerce", ECommerceSchema);
+  mongoose.model.ECommerce || mongoose.model("ECommerceadd", ECommerceSchema);
 
 export default ECommerceModel;
