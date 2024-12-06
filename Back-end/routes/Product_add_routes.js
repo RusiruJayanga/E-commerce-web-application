@@ -27,6 +27,6 @@ const upload = multer({
 });
 
 // Route for adding a product
-ECommerceRouter.post("/add", upload.single("image"), AddProduct);
+ECommerceRouter.post("/add", upload.single("productimage"), AddProduct);
 
 export default ECommerceRouter;
