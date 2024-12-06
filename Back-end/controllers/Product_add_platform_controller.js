@@ -1,12 +1,11 @@
-import ECommerceModel from "../models/E_commerce_platform.js";
-import ECommerceRouter from "../routes/E_commerce_platform_routes.js";
-import fs from "fs";
+import ECommerceModel from "../models/Product_add_platform.js";
 
-//Add product
-
+// Add product
 const AddProduct = async (req, res) => {
-  let image_flieName = `${req.file.filename}`;
+  let imageFileName = req.file?.filename || "default.jpg";
+
   const ECommerce = new ECommerceModel({
+    SellerEmail: req.body.SellerEmail,
     ProductName: req.body.ProductName,
     ShortDescription: req.body.ShortDescription,
     LongDescription: req.body.LongDescription,
@@ -16,14 +15,15 @@ const AddProduct = async (req, res) => {
     Quantity: req.body.Quantity,
     ForWho: req.body.ForWho,
     Category: req.body.Category,
-    ImageFile: image_flieName,
+    ImageFile: imageFileName,
   });
+
   try {
     await ECommerce.save();
     res.json({ success: true, message: "Product is added" });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, massage: "Failed" });
+    console.log(error.message);
+    res.json({ success: false, message: "Failed to add product" });
   }
 };
 

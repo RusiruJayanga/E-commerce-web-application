@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const ECommerceSchema = new mongoose.Schema({
+  SellerEmail: { type: String, required: true },
   ProductName: { type: String, required: true },
   ShortDescription: { type: String, required: true },
   LongDescription: { type: String, required: true },
@@ -13,7 +14,6 @@ const ECommerceSchema = new mongoose.Schema({
   ImageFile: { type: String, required: true },
 });
 
-const ECommerceModel =
-  mongoose.model.ECommerce || mongoose.model("ECommerceadd", ECommerceSchema);
+const ECommerceModel = mongoose.model("ecommerceproductadd", ECommerceSchema);
 
 export default ECommerceModel;

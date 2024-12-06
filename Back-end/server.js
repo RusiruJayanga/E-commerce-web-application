@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
-import ECommerceRouter from "./routes/E_commerce_platform_routes.js";
+import ECommerceRouter from "./routes/Product_add_routes.js";
 
 const app = express();
 const port = 4000;
@@ -9,11 +9,11 @@ const port = 4000;
 app.use(express.json());
 app.use(cors());
 
-//Connection db.js
+// Connection to MongoDB
 connectDB();
 
-//Api end point
-app.use("/api/Ecommerce", ECommerceRouter);
+// API Endpoints
+app.use("/api/ecommerceproductadd", ECommerceRouter);
 
 app.get("/", (req, res) => {
   res.send("Good to go");
