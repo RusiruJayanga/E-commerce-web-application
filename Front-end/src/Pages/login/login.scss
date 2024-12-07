@@ -19,6 +19,7 @@
   margin: 12px 0;
   border: 1px solid #c29d7b;
   border-radius: 5px;
+  margin-top: 30px;
 }
 .login-input-box input,
 .login-input-box textarea {
@@ -32,7 +33,7 @@
   resize: none;
 }
 .login-button {
-  margin-top: 12px;
+  margin-top: 22px;
   margin-bottom: 0;
   width: 110px;
   height: 45px;
@@ -43,20 +44,16 @@
   background-color: #873e23;
   transition: 300ms ease-out;
 }
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
 .login-button:hover {
   background-color: white;
   color: #873e23;
 }
-.signup-button {
-  width: 110px;
-  height: 45px;
-  border-radius: 3px;
-  border: 1px solid #c29d7b;
-  font-size: 15px;
-  color: white;
-  background-color: #c29d7b;
-  transition: 300ms ease-out;
-}
+
 .signup-button:hover {
   background-color: white;
   color: #873e23;

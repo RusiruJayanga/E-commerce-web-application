@@ -1,7 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import "./contact.css";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = "Name is required.";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
+    ) {
+      newErrors.email = "Invalid email address.";
+    }
+    if (!formData.message.trim()) {
+      newErrors.message = "Message cannot be empty.";
+    } else if (formData.message.length > 100) {
+      newErrors.message = "Message cannot exceed 100 characters.";
+    }
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      setErrors({});
+      console.log("Form submitted successfully:", formData);
+      // You can add a function to send data to the server here
+
+      // Reset form
+      alert("Message sent!");
+      setFormData({ name: "", email: "", message: "" });
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div>
       {/* Contact section */}
@@ -34,17 +81,42 @@ const Contact = () => {
             fugit at maiores consectetur ipsum odio velit sunt cupiditate minus,
             modi numquam.
           </p>
-          <form className="gap" action="#">
+          <form className="gap" onSubmit={handleSubmit}>
             <div className="contact-input-box">
-              <input typeof="text" placeholder="Enter your name"></input>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+              {errors.name && <p className="error">{errors.name}</p>}
             </div>
             <div className="contact-input-box">
-              <input typeof="text" placeholder="Enter your email"></input>
+              <input
+                type="text"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {errors.email && <p className="error">{errors.email}</p>}
             </div>
             <div className="contact-input-box message-box">
-              <input typeof="text" placeholder="Message..."></input>
+              <input
+                name="message"
+                placeholder="Message..."
+                value={formData.message}
+                onChange={handleChange}
+              />
+              <p className="char-count">
+                {formData.message.length}/100 characters{" "}
+                {errors.message && <p className="error">{errors.message}</p>}
+              </p>
             </div>
-            <button className="contact-button">Send</button>
+            <button className="contact-button" type="submit">
+              Send
+            </button>
           </form>
         </div>
       </div>

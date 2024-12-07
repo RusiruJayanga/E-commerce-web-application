@@ -19,6 +19,7 @@
   margin: 12px 0;
   border: 1px solid #c29d7b;
   border-radius: 5px;
+  margin-top: 30px;
 }
 .signup-input-box input,
 .signup-input-box textarea {
@@ -32,7 +33,7 @@
   resize: none;
 }
 .signup-button {
-  margin-top: 12px;
+  margin-top: 22px;
   width: 110px;
   height: 45px;
   border-radius: 3px;
@@ -41,6 +42,11 @@
   color: white;
   background-color: #873e23;
   transition: 300ms ease-out;
+}
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
 }
 .signup-button:hover {
   background-color: white;

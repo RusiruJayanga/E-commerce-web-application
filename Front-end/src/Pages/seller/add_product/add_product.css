@@ -21,6 +21,7 @@
   margin: 12px 0;
   border: 1px solid #c29d7b;
   border-radius: 5px;
+  margin-top: 30px;
 }
 
 .product-add-input-box-select {
@@ -29,6 +30,7 @@
   margin: 12px 0;
   border: 1px solid #c29d7b;
   border-radius: 5px;
+  margin-top: 30px;
 }
 
 .product-add-input-box-image {
@@ -84,7 +86,7 @@ input[type=file]::file-selector-button:hover {
 }
 
 .product-add-button {
-  margin-top: 12px;
+  margin-top: 42px;
   width: 110px;
   height: 45px;
   border-radius: 3px;
@@ -93,6 +95,22 @@ input[type=file]::file-selector-button:hover {
   color: white;
   background-color: #873e23;
   transition: 300ms ease-out;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.char-count {
+  font-size: 0.8rem;
+  color: gray;
+  margin-top: 5px;
+}
+
+.margin-top-add {
+  margin-top: 50px;
 }
 
 .product-add-button:hover {
