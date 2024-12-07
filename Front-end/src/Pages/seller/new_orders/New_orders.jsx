@@ -1,6 +1,5 @@
 import React from "react";
 import "./new_orders.css";
-import Footer from "../../../Components/footer/Footer";
 
 const New_orders = () => {
   return (
@@ -38,8 +37,6 @@ const New_orders = () => {
           </table>
         </div>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React from "react";
 import "./home.css";
 import Category from "../../Components/category/Category";
 import Category_page from "../../Components/category/category_page/Category_page";
-import Footer from "../../Components/footer/Footer";
 
 const Home = () => {
   return (
@@ -76,8 +75,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

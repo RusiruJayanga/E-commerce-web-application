@@ -1,6 +1,5 @@
 import React from "react";
 import "./delivered.css";
-import Footer from "../../../Components/footer/Footer";
 
 const Delivered = () => {
   return (
@@ -38,8 +37,6 @@ const Delivered = () => {
           </table>
         </div>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

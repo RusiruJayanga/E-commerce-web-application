@@ -18,7 +18,7 @@ const Login = () => {
           <button className="login-button">Login</button>
         </form>
         <Link to="/Signup">
-          <button className="signup-button">Signup</button>
+          <p className="gap">Don't have an account? sign up</p>
         </Link>
       </div>
     </div>

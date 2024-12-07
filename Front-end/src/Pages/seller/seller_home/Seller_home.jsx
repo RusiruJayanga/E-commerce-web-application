@@ -1,6 +1,5 @@
 import React from "react";
 import "./seller_home.css";
-import Footer from "../../../Components/footer/Footer";
 
 const Seller_home = () => {
   return (
@@ -53,8 +52,6 @@ const Seller_home = () => {
           </table>
         </div>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

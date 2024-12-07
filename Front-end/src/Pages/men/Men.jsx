@@ -1,6 +1,5 @@
 import React from "react";
 import "./men.css";
-import Footer from "../../Components/footer/Footer";
 import Category from "../../Components/category/Category";
 import Search from "../../Components/search/Search";
 
@@ -13,8 +12,6 @@ const Men = () => {
       <Search />
       {/* Category section */}
       <Category />
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

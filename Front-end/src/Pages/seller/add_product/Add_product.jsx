@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import Select from "react-select";
 import "./add_product.css";
-import Footer from "../../../Components/footer/Footer";
 
 const Advertise = [
   { value: "None", label: "None" },
@@ -89,8 +88,6 @@ const Add_product = () => {
           <button className="product-add-button">Add</button>
         </form>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import "./chat.css";
-import Footer from "../../../Components/footer/Footer";
 
 const Chat = () => {
   return (
@@ -38,8 +37,6 @@ const Chat = () => {
           </table>
         </div>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

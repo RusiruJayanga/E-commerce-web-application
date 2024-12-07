@@ -7,6 +7,7 @@ import Women from "./Pages/women/Women";
 import Offers from "./Pages/offers/Offers";
 import Hot from "./Pages/hot/Hot";
 import Wish_list from "./Pages/wish_list/Wish_list";
+import Footer from "./Components/footer/Footer";
 import Cart from "./Pages/cart/Cart";
 import Account from "./Pages/account/Account";
 import Search from "./Pages/search_page/Search_page";
@@ -91,6 +92,8 @@ const App = () => {
         <Route path="/Delivered" element={<Delivered />} />
         <Route path="/Seller_profile" element={<Seller_login />} />
       </Routes>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

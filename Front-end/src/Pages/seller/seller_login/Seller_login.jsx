@@ -7,7 +7,7 @@ const Seller_login = () => {
     <div>
       {/* Seller login section */}
       <div className="seller-login-con">
-        <h3 className="text-hili">Log in</h3>
+        <h3 className="text-hili">Seller account Log in</h3>
         <form className="gap" action="#">
           <div className="seller-login-input-box">
             <input type="text" placeholder="Company email"></input>
@@ -18,7 +18,7 @@ const Seller_login = () => {
           <button className="seller-login-button">Login</button>
         </form>
         <Link to="/Seller_signup">
-          <button className="seller-signup-button">Signup</button>
+          <p className="gap">Don't have an account? sign up</p>
         </Link>
       </div>
     </div>

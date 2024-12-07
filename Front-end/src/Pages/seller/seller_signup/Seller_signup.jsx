@@ -20,7 +20,7 @@ const Seller_signup = () => {
     <div>
       {/* Add section */}
       <div className="seller-signup-con">
-        <h3 className="text-hili">Sign up</h3>
+        <h3 className="text-hili">Seller account Sign up</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel vitae
           quae inventore reiciendis deserunt. Temporibus impedit quae aliquid
@@ -63,7 +63,7 @@ const Seller_signup = () => {
           <button className="seller-signup-button">Signup</button>
         </form>
         <Link to="/Seller_login">
-          <button className="seller-login-button">Login</button>
+          <p className="gap">You already have an account? please Login</p>
         </Link>
       </div>
     </div>

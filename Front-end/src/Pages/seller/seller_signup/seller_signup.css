@@ -1,9 +1,10 @@
 .seller-signup-con {
-  width: 50%;
+  width: 40%;
   margin-inline: auto;
   align-items: center;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 60px;
+  text-align: center;
 }
 
 .seller-signup-right-side {
@@ -29,6 +30,7 @@
   margin: 12px 0;
   border: 1px solid #c29d7b;
   border-radius: 5px;
+  text-align: left;
 }
 
 .seller-signup-input-box-image {

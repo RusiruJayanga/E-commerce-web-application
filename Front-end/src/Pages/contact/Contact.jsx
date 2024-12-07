@@ -1,6 +1,5 @@
 import React from "react";
 import "./contact.css";
-import Footer from "../../Components/footer/Footer";
 
 const Contact = () => {
   return (
@@ -49,8 +48,6 @@ const Contact = () => {
           </form>
         </div>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };
