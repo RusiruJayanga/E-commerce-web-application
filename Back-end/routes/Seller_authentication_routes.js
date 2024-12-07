@@ -1,8 +1,11 @@
 import express from "express";
-import { AddProduct } from "../controllers/Product_add_platform_controller.js";
+import {
+  SellerLogin,
+  SellerSignup,
+} from "../controllers/Seller_authentication_controller.js";
 import multer from "multer";
 
-const ECommerceRouter = express.Router();
+const SellerAuthenticationRouter = express.Router();
 
 // Image storage
 const storage = multer.diskStorage({
@@ -26,7 +29,14 @@ const upload = multer({
   },
 });
 
-// Route for adding a product
-ECommerceRouter.post("/add", upload.single("productimage"), AddProduct);
+// Seller signup
+SellerAuthenticationRouter.post(
+  "/sellersignup",
+  upload.single("logoimage"),
+  SellerSignup
+);
 
-export default ECommerceRouter;
+// Seller login
+SellerAuthenticationRouter.post("/Sellerlogin", SellerLogin);
+
+export default SellerAuthenticationRouter;
