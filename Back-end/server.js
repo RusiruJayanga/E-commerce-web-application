@@ -6,6 +6,7 @@ import ECommerceRouter from "./routes/Product_add_routes.js";
 import SellerAuthenticationRouter from "./routes/Seller_authentication_routes.js";
 import CustomerAuthenticationRouter from "./routes/Customer_authentication_routes.js";
 import AdmincontactRouter from "./routes/Admin_contact_routes.js";
+import WishlistRouter from "./routes/Wish_list_routes.js";
 
 const app = express();
 const port = 3000;
@@ -28,6 +29,8 @@ app.use("/api/sellerauthentication", SellerAuthenticationRouter);
 app.use("/api/customerauthentication", CustomerAuthenticationRouter);
 //Admin contact
 app.use("/api/admincontact", AdmincontactRouter);
+//Wish list
+app.use("/api/wishlist", WishlistRouter);
 
 app.get("/", (req, res) => {
   res.send("Good to go");

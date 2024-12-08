@@ -1,28 +1,31 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    userEmail: "",
-    password: "",
+    CustomerEmail: "",
+    CustomerPassword: "",
   });
 
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
+  const navigate = useNavigate();
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.userEmail.trim()) {
-      newErrors.userEmail = "Email is required.";
+    if (!formData.CustomerEmail.trim()) {
+      newErrors.CustomerEmail = "Email is required.";
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.userEmail)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.CustomerEmail)
     ) {
-      newErrors.userEmail = "Invalid email address.";
+      newErrors.CustomerEmail = "Invalid email address.";
     }
-    if (!formData.password.trim()) {
-      newErrors.password = "Password is required.";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters.";
+    if (!formData.CustomerPassword.trim()) {
+      newErrors.CustomerPassword = "Password is required.";
+    } else if (formData.CustomerPassword.length < 6) {
+      newErrors.CustomerPassword = "Password must be at least 6 characters.";
     }
     return newErrors;
   };
@@ -32,50 +35,68 @@ const Login = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-    } else {
-      setErrors({});
-      console.log("Login successful:", formData);
-      alert("Login successful!");
-      setFormData({
-        userEmail: "",
-        password: "",
-      });
+      return;
+    }
+
+    setErrors({});
+    setApiError("");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/customerauthentication/customerlogin",
+        formData
+      );
+
+      if (response.data.success) {
+        console.log("Login successful:", response.data);
+        // Redirect
+        navigate("/");
+      } else {
+        setApiError(response.data.message || "Login failed.");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert('"An error occurred while logging in. Please try again."');
     }
   };
 
   return (
     <div>
-      {/* Customer login section */}
       <div className="login-con">
         <h3 className="text-hili">Log in</h3>
         <form className="gap" onSubmit={handleSubmit}>
           <div className="login-input-box">
             <input
               type="text"
-              name="userEmail"
+              name="CustomerEmail"
               placeholder="User email"
-              value={formData.userEmail}
+              value={formData.CustomerEmail}
               onChange={handleChange}
             />
-            {errors.userEmail && <p className="error">{errors.userEmail}</p>}
+            {errors.CustomerEmail && (
+              <p className="error">{errors.CustomerEmail}</p>
+            )}
           </div>
           <div className="login-input-box">
             <input
               type="password"
-              name="password"
+              name="CustomerPassword"
               placeholder="Password"
-              value={formData.password}
+              value={formData.CustomerPassword}
               onChange={handleChange}
             />
-            {errors.password && <p className="error">{errors.password}</p>}
+            {errors.CustomerPassword && (
+              <p className="error">{errors.CustomerPassword}</p>
+            )}
           </div>
           <button className="login-button">Login</button>
         </form>
+        {apiError && <p className="error">{apiError}</p>}
         <Link to="/Signup">
           <p className="gap">Don't have an account? sign up</p>
         </Link>

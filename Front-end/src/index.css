@@ -7,6 +7,7 @@
 body {
   min-height: 100vh;
   font-family: Outfit;
+  scroll-behavior: smooth;
 }
 a {
   text-decoration: none;

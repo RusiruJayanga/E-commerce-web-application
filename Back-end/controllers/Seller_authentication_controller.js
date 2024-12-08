@@ -7,6 +7,22 @@ import validator from "validator";
 const SellerLogin = async (req, res) => {
   const { SellerEmail, SellerPassword } = req.body;
 
+  // Validate
+  if (!SellerEmail || !SellerPassword) {
+    return res.status(400).json({
+      success: false,
+      message: "All fields are required.",
+    });
+  }
+
+  if (!validator.isEmail(SellerEmail)) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid email format.",
+    });
+  }
+
+  // Check email exists
   try {
     const logexists = await SellerAuthenticationModel.findOne({ SellerEmail });
 
