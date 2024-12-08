@@ -4,7 +4,42 @@ import bcryptjs from "bcryptjs";
 import validator from "validator";
 
 //Seller login
-const SellerLogin = async (req, res) => {};
+const SellerLogin = async (req, res) => {
+  const { SellerEmail, SellerPassword } = req.body;
+
+  try {
+    const logexists = await SellerAuthenticationModel.findOne({ SellerEmail });
+
+    if (!logexists) {
+      return res.status(410).json({
+        success: false,
+        message: "Your email is not registered. Please register.",
+      });
+    }
+
+    const isMatch = await bcryptjs.compare(
+      SellerPassword,
+      logexists.SellerPassword
+    );
+
+    if (!isMatch) {
+      return res.status(410).json({
+        success: false,
+        message: "Your email or password is incorrect!",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Login successful!",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to login.",
+    });
+  }
+};
 
 // Seller signup
 const SellerSignup = async (req, res) => {

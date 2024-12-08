@@ -1,15 +1,20 @@
 import express from "express";
+import multer from "multer";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
 import ECommerceRouter from "./routes/Product_add_routes.js";
 import SellerAuthenticationRouter from "./routes/Seller_authentication_routes.js";
 import CustomerAuthenticationRouter from "./routes/Customer_authentication_routes.js";
+import AdmincontactRouter from "./routes/Admin_contact_routes.js";
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+const upload = multer();
+app.use(upload.none());
 
 // Connection to MongoDB
 connectDB();
@@ -21,6 +26,8 @@ app.use("/api/ecommerceproductadd", ECommerceRouter);
 app.use("/api/sellerauthentication", SellerAuthenticationRouter);
 //Seller authentication
 app.use("/api/customerauthentication", CustomerAuthenticationRouter);
+//Admin contact
+app.use("/api/admincontact", AdmincontactRouter);
 
 app.get("/", (req, res) => {
   res.send("Good to go");

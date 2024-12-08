@@ -37,6 +37,6 @@ SellerAuthenticationRouter.post(
 );
 
 // Seller login
-SellerAuthenticationRouter.post("/Sellerlogin", SellerLogin);
+SellerAuthenticationRouter.post("/sellerlogin", SellerLogin);
 
 export default SellerAuthenticationRouter;
