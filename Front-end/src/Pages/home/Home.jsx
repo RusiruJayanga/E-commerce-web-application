@@ -10,7 +10,7 @@ const Home = () => {
       <section className="section-image home-bg1">
         <div className="section-image-left">
           <div>
-            <h4>Lorem ipsum dolor sit </h4>
+            <h4 className="text-hili">Lorem ipsum dolor sit </h4>
             <h1>BLACK FRIDAY</h1>
             <p>
               Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
@@ -32,7 +32,7 @@ const Home = () => {
       <section className="section-image home-bg2">
         <div className="section-image-left">
           <div>
-            <h4>Lorem ipsum dolor sit </h4>
+            <h4 className="text-hili">Lorem ipsum dolor sit </h4>
             <h1>BLACK FRIDAY</h1>
             <p>
               Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit

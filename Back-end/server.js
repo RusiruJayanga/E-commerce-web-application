@@ -14,8 +14,6 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-const upload = multer();
-app.use(upload.none());
 
 // Connection to MongoDB
 connectDB();

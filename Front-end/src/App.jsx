@@ -40,7 +40,7 @@ const App = () => {
           "Contact",
           "Wish_list",
           "Cart",
-          "Accoun",
+          "Account",
           "Search",
           "Product_details",
         ].map((path) => (
@@ -56,16 +56,6 @@ const App = () => {
           "Seller_profile",
         ].map((path) => (
           <Route path={path} element={<Seller_nav />} />
-        ))}
-        {/* Account nav bar */}
-        {[
-          "Signup",
-          "Customer_login",
-          "Login",
-          "Seller_signup",
-          "Seller_login",
-        ].map((path) => (
-          <Route path={path} element={<Log_sign_navbar />} />
         ))}
       </Routes>
       {/* Pages */}
@@ -91,9 +81,33 @@ const App = () => {
         <Route path="/New_orders" element={<New_orders />} />
         <Route path="/Delivered" element={<Delivered />} />
         <Route path="/Seller_profile" element={<Seller_login />} />
+        <Route path="/Account" element={<Account />} />
       </Routes>
       {/* Footer */}
-      <Footer />
+      <Routes>
+        {/* Customer nav bar */}
+        {[
+          "",
+          "Men",
+          "Women",
+          "Offers",
+          "Hot",
+          "Contact",
+          "Wish_list",
+          "Cart",
+          "Account",
+          "Search",
+          "Product_details",
+          "Add_product",
+          "Seller_home",
+          "Chat",
+          "New_orders",
+          "Delivered",
+          "Seller_profile",
+        ].map((path) => (
+          <Route path={path} element={<Footer />} />
+        ))}
+      </Routes>
     </div>
   );
 };

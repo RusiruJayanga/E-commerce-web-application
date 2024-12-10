@@ -1,10 +1,10 @@
 .contact-con {
-  width: 100%;
+  width: 90%;
   margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 .contact-left-side {
   width: 25%;
@@ -78,6 +78,10 @@
   background-color: #873e23;
   transition: 300ms ease-out;
 }
+.contact-button:hover {
+  background-color: white;
+  color: #873e23;
+}
 .error {
   color: red;
   font-size: 0.9rem;
@@ -88,10 +92,7 @@
   color: gray;
   margin-top: 5px;
 }
-.contact-button:hover {
-  background-color: white;
-  color: #873e23;
-}
+
 @media (max-width: 950px) {
   .contact-right-side {
     width: 75%;

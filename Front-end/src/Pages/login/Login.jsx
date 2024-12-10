@@ -53,6 +53,7 @@ const Login = () => {
       );
 
       if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
         console.log("Login successful:", response.data);
         // Redirect
         navigate("/");
@@ -61,14 +62,14 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Error during login:", error);
-      alert('"An error occurred while logging in. Please try again."');
+      alert("Your email or password is incorrect!");
     }
   };
 
   return (
-    <div>
+    <div className="login-main">
       <div className="login-con">
-        <h3 className="text-hili">Log in</h3>
+        <h3 className="text-hili">Customer Login</h3>
         <form className="gap" onSubmit={handleSubmit}>
           <div className="login-input-box">
             <input
@@ -96,9 +97,8 @@ const Login = () => {
           </div>
           <button className="login-button">Login</button>
         </form>
-        {apiError && <p className="error">{apiError}</p>}
         <Link to="/Signup">
-          <p className="gap">Don't have an account? sign up</p>
+          <p className="gap">Don't have an account? Sign up</p>
         </Link>
       </div>
     </div>

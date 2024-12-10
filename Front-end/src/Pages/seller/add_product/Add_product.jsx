@@ -207,8 +207,8 @@ const Add_product = () => {
                 handleSelectChange("advertise", selected.value)
               }
             />
-            {errors.advertise && <p className="error">{errors.advertise}</p>}
           </div>
+          {errors.advertise && <p className="error">{errors.advertise}</p>}
           <div className="product-add-input-box">
             <input
               type="number"
@@ -227,8 +227,8 @@ const Add_product = () => {
                 handleSelectChange("gender", selected.value)
               }
             />
-            {errors.gender && <p className="error">{errors.gender}</p>}
           </div>
+          {errors.gender && <p className="error">{errors.gender}</p>}
           <div className="product-add-input-box-select">
             <Select
               placeholder="Category"
@@ -237,8 +237,8 @@ const Add_product = () => {
                 handleSelectChange("category", selected.value)
               }
             />
-            {errors.category && <p className="error">{errors.category}</p>}
-          </div>
+          </div>{" "}
+          {errors.category && <p className="error">{errors.category}</p>}
           <div className="product-add-input-box-image">
             <input
               className="product-add-input-box-image-input"
