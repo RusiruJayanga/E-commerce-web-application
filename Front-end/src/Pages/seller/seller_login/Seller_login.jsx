@@ -59,7 +59,6 @@ const Seller_login = () => {
         localStorage.setItem("sellertoken", response.data.token);
         localStorage.setItem("sellerId", response.data.sellerId);
         console.log("Login successful:", response.data);
-        console.log("Login successful. Customer ID:", response.data.sellerId);
         alert("Welcome back!");
 
         // Redirect to seller home page

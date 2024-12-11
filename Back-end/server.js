@@ -8,6 +8,7 @@ import CustomerAuthenticationRouter from "./routes/Customer_authentication_route
 import AdmincontactRouter from "./routes/Admin_contact_routes.js";
 import WishlistRouter from "./routes/Wish_list_routes.js";
 import ProductDisplayRouter from "./routes/Seller_all_products_routes.js";
+import Delete from "./routes/Seller_product_de_ed_routes.js";
 
 const app = express();
 const port = 3000;
@@ -15,6 +16,7 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
 
 // Connection to MongoDB
 connectDB();
@@ -32,6 +34,8 @@ app.use("/api/admincontact", AdmincontactRouter);
 app.use("/api/wishlist", WishlistRouter);
 // Product display
 app.use("/api/products", ProductDisplayRouter);
+// Product delete
+app.use("/api/products", Delete);
 
 app.get("/", (req, res) => {
   res.send("Good to go");

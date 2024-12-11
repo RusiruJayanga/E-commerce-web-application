@@ -1,29 +1,67 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import "./seller_home.css";
 import { Delete } from "../../../Components/Modules/seller_product_delete/Seller_product_delete";
 import { Edit } from "../../../Components/Modules/seller_product_edit/Seller_product_edit";
 
 const Seller_home = () => {
+  const [products, setProducts] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [message, setMessage] = useState("");
-
-  const handleButtonClick = (value) => {
-    setModalOpen(false);
-    setMessage(value);
-  };
-
   const [editOpen, editModalOpen] = useState(false);
-  const [editmessage, editMessage] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const handleeditButtonClick = (value) => {
-    editModalOpen(false);
-    editMessage(value);
+  const sellerID = localStorage.getItem("sellerId"); // Retrieve SellerID from localStorage
+  console.log("Retrieved SellerID:", sellerID);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/products?sellerID=${sellerID}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    if (sellerID) {
+      fetchProducts();
+    }
+  }, [sellerID]);
+
+  const handleDelete = async (productId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/products/${productId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete product");
+      }
+
+      const result = await response.json();
+      console.log(result.message);
+      // "Product deleted successfully"
+
+      // Update front-end state to reflect deletion
+      setProducts(products.filter((product) => product._id !== productId));
+      setModalOpen(false);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
   return (
     <div>
-      <div class="all-product-container">
+      <div className="all-product-container">
         <div className="all-product-tbl_content">
           <table className="all-product-tbl">
             <thead>
@@ -33,63 +71,80 @@ const Seller_home = () => {
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Status</th>
-                <th colspan="2">Action</th>
+                <th colSpan="2">Action</th>
               </tr>
             </thead>
             <tbody>
-              {/* Repeat start */}
-              <tr>
-                <td data-label="User Id">
-                  <img
-                    className="seller-home-table-image"
-                    src="product.png"
-                    alt=""
-                  />
-                </td>
-                <td data-label="User Id">name db</td>
-                <td data-label="Name">Quantity db</td>
-                <td data-label="Email">Price db</td>
-                <td data-label="Status">Status db </td>
-                <td data-label="Edit">
-                  <button
-                    className="all-product-btn_edit"
-                    onClick={() => editModalOpen(true)}
-                  >
-                    Edit
-                  </button>
-                  {editOpen &&
-                    createPortal(
-                      <Edit
-                        closeModal={handleeditButtonClick}
-                        onSubmit={handleeditButtonClick}
-                        onCancel={handleeditButtonClick}
-                      ></Edit>,
-                      document.body
-                    )}
-                </td>
-                <td data-label="Delete">
-                  <button
-                    className="all-product-btn_trash"
-                    onClick={() => setModalOpen(true)}
-                  >
-                    Delete
-                  </button>
-                  {modalOpen &&
-                    createPortal(
-                      <Delete
-                        closeModal={handleButtonClick}
-                        onSubmit={handleButtonClick}
-                        onCancel={handleButtonClick}
-                      ></Delete>,
-                      document.body
-                    )}
-                </td>
-              </tr>
-              {/* Repeat end */}
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td data-label="User Id">
+                    <img
+                      className="seller-home-table-image"
+                      src={
+                        `http://localhost:3000/uploads/${product.ImageFile}` ||
+                        "product.png"
+                      }
+                      alt={product.ProductName}
+                    />
+                  </td>
+                  <td data-label="User Id">{product.ProductName}</td>
+                  <td data-label="Name">{product.Quantity}</td>
+                  <td data-label="Email">${product.Price}</td>
+                  <td data-label="Status">
+                    {product.Quantity === 0
+                      ? "No Stock"
+                      : product.Quantity < 5
+                      ? "Low Stock"
+                      : "On Stock"}
+                  </td>
+                  <td data-label="Edit">
+                    <button
+                      className="all-product-btn_edit"
+                      onClick={() => {
+                        setSelectedProduct(product);
+                        editModalOpen(true);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  </td>
+                  <td data-label="Delete">
+                    <button
+                      className="all-product-btn_trash"
+                      onClick={() => {
+                        setSelectedProduct(product);
+                        setModalOpen(true);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       </div>
+
+      {/* Edit Modal */}
+      {editOpen &&
+        createPortal(
+          <Edit
+            closeModal={() => editModalOpen(false)}
+            product={selectedProduct}
+          />,
+          document.body
+        )}
+
+      {/* Delete Modal */}
+      {modalOpen &&
+        createPortal(
+          <Delete
+            closeModal={() => setModalOpen(false)}
+            onSubmit={() => handleDelete(selectedProduct._id)}
+          />,
+          document.body
+        )}
     </div>
   );
 };

@@ -21,10 +21,10 @@ import New_orders from "./Pages/seller/new_orders/New_orders";
 import Delivered from "./Pages/seller/delivered/Delivered";
 import Seller_profile from "./Pages/seller/seller_profile/Seller_profile";
 import Seller_signup from "./Pages/seller/seller_signup/Seller_signup";
-import Log_sign_navbar from "./Components/login_signup-nav/Log_sign_navbar";
 import Seller_login from "./Pages/seller/seller_login/Seller_login";
 import Signup from "./Pages/signup/Signup";
 import Login from "./Pages/login/Login";
+import EditProduct from "./Pages/seller/edit_product/Edit_product";
 
 const App = () => {
   return (
@@ -54,6 +54,7 @@ const App = () => {
           "New_orders",
           "Delivered",
           "Seller_profile",
+          "editproduct",
         ].map((path) => (
           <Route path={path} element={<Seller_nav />} />
         ))}
@@ -82,6 +83,7 @@ const App = () => {
         <Route path="/Delivered" element={<Delivered />} />
         <Route path="/Seller_profile" element={<Seller_profile />} />
         <Route path="/Account" element={<Account />} />
+        <Route path="/editproduct" element={<EditProduct />} />
       </Routes>
       {/* Footer */}
       <Routes>
@@ -104,6 +106,7 @@ const App = () => {
           "New_orders",
           "Delivered",
           "Seller_profile",
+          "editproduct",
         ].map((path) => (
           <Route path={path} element={<Footer />} />
         ))}

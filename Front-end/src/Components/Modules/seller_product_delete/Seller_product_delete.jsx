@@ -1,19 +1,13 @@
 import React from "react";
 import "./seller_product_delete.css";
 
-export const Delete = ({ onSubmit, onCancel, closeModal, children }) => {
+export const Delete = ({ onSubmit, closeModal }) => {
   return (
-    <div
-      className="seller-product-delete-modal-container"
-      onClick={(e) => {
-        if (e.target.className === "modal-container")
-          closeModal("Modal was closed");
-      }}
-    >
+    <div className="seller-product-delete-modal-container">
       <div className="seller-product-delete-modal">
         <div
           className="seller-product-delete-modal-header"
-          onClick={() => closeModal("Modal was closed")}
+          onClick={() => closeModal()}
         >
           <p className="seller-product-delete-close">&times;</p>
         </div>
@@ -21,22 +15,21 @@ export const Delete = ({ onSubmit, onCancel, closeModal, children }) => {
           <img
             className="seller-product-delete-image"
             src="delete.png"
-            alt=""
+            alt="Delete"
           />
-          <h4>Are you want to delete this item?</h4>
+          <h4>Are you sure you want to delete this product?</h4>
         </div>
         <div className="seller-product-delete-modal-footer">
           <button
             type="submit"
             className="btn seller-product-delete-btn-submit"
-            onClick={() => onSubmit("Submit button was clicked")}
+            onClick={onSubmit}
           >
-            Conform
+            Confirm
           </button>
           <button
-            type="submit"
             className="btn seller-product-delete-btn-cancel"
-            onClick={() => onCancel("Cancel button was clicked")}
+            onClick={() => closeModal()}
           >
             Cancel
           </button>
