@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"; // Import axios for HTTP requests
 import "./Seller_signup.css";
 
 const Geolocation = [
@@ -22,6 +23,8 @@ const Seller_signup = () => {
 
   const [errors, setErrors] = useState({});
   const [filePreview, setFilePreview] = useState(null);
+  const navigate = useNavigate(); // Used for navigation after signup
+  const [apiError, setApiError] = useState("");
 
   const validate = () => {
     const newErrors = {};
@@ -72,34 +75,60 @@ const Seller_signup = () => {
     setFormData((prev) => ({ ...prev, geolocation: selectedOption }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      return;
     } else {
       setErrors({});
-      console.log("Sign-up successful:", formData);
-      alert("Sign-up successful!");
-      setFormData({
-        companyName: "",
-        companyEmail: "",
-        companyAddress: "",
-        phoneNumber: "",
-        geolocation: null,
-        description: "",
-        password: "",
-        file: null,
-      });
-      setFilePreview(null);
+    }
+
+    // Prepare the form data for submission (including file data)
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append("SellerName", formData.companyName);
+    formDataToSubmit.append("SellerEmail", formData.companyEmail);
+    formDataToSubmit.append("SellerAddress", formData.companyAddress);
+    formDataToSubmit.append("SellerPhoneNumber", formData.phoneNumber);
+    formDataToSubmit.append("SellerGeolocation", formData.geolocation.value);
+    formDataToSubmit.append("SellerDescription", formData.description);
+    formDataToSubmit.append("SellerPassword", formData.password);
+    formDataToSubmit.append("logoimage", formData.file);
+
+    try {
+      // Send the signup request to the backend
+      const response = await axios.post(
+        "http://localhost:3000/api/sellerauthentication/sellersignup",
+        formDataToSubmit,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Required for file uploads
+          },
+        }
+      );
+
+      if (response.data.success) {
+        // Store the token in localStorage
+        localStorage.setItem("sellertoken", response.data.token);
+        localStorage.setItem("sellerId", response.data.sellerId);
+        console.log("Login successful. Customer ID:", response.data.sellerId);
+        alert("Signup successful! Welcome!");
+        // Redirect to seller home
+        navigate("/Seller_home");
+      } else {
+        setApiError(response.data.message || "Signup failed.");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      setApiError("An error occurred during signup.");
     }
   };
 
   return (
-    <div>
-      {/* Add section */}
+    <div className="seller-signup-main">
       <div className="seller-signup-con">
-        <h3 className="text-hili">Seller account Sign up</h3>
+        <h3 className="text-hili">Sign up</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel vitae
           quae inventore reiciendis deserunt.
@@ -191,7 +220,7 @@ const Seller_signup = () => {
               className="seller-signup-input-box-image-input"
               type="file"
               onChange={handleFileChange}
-            ></input>
+            />
             {filePreview && (
               <img
                 className="seller-signup-input-image"
@@ -201,11 +230,15 @@ const Seller_signup = () => {
             )}
             {errors.file && <p className="error">{errors.file}</p>}
           </div>
-          <button className="seller-signup-button">Signup</button>
+          <button className="seller-signup-button" type="submit">
+            Signup
+          </button>
         </form>
         <Link to="/Seller_login">
-          <p className="gap">You already have an account? please Login</p>
+          <p className="gap">You already have an account? Login</p>
         </Link>
+        {apiError && <p className="error">{apiError}</p>}{" "}
+        {/* Display API error */}
       </div>
     </div>
   );

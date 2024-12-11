@@ -3,11 +3,18 @@ import jwt from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 import validator from "validator";
 
-//Seller login
+// Helper function to generate a JWT
+const generateToken = (sellerId) => {
+  return jwt.sign({ id: sellerId }, process.env.JWT_SECRET || "secret", {
+    expiresIn: "1h", // Token expires in 1 hour
+  });
+};
+
+// Seller login
 const SellerLogin = async (req, res) => {
   const { SellerEmail, SellerPassword } = req.body;
 
-  // Validate
+  // Validate input
   if (!SellerEmail || !SellerPassword) {
     return res.status(400).json({
       success: false,
@@ -22,20 +29,21 @@ const SellerLogin = async (req, res) => {
     });
   }
 
-  // Check email exists
   try {
-    const logexists = await SellerAuthenticationModel.findOne({ SellerEmail });
+    // Check if email exists
+    const seller = await SellerAuthenticationModel.findOne({ SellerEmail });
 
-    if (!logexists) {
+    if (!seller) {
       return res.status(410).json({
         success: false,
         message: "Your email is not registered. Please register.",
       });
     }
 
+    // Validate password
     const isMatch = await bcryptjs.compare(
       SellerPassword,
-      logexists.SellerPassword
+      seller.SellerPassword
     );
 
     if (!isMatch) {
@@ -44,12 +52,22 @@ const SellerLogin = async (req, res) => {
         message: "Your email or password is incorrect!",
       });
     }
+
+    // Generate token for the seller
+    const token = jwt.sign(
+      { id: seller._id }, // Include seller ID in the token payload
+      process.env.JWT_SECRET || "secret", // Use environment variable or fallback
+      { expiresIn: "1h" } // Set token expiration time
+    );
+
     return res.status(200).json({
       success: true,
       message: "Login successful!",
+      sellerId: seller._id, // Include seller ID in the response
+      token, // Include the generated token
     });
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     res.status(500).json({
       success: false,
       message: "Failed to login.",
@@ -72,7 +90,7 @@ const SellerSignup = async (req, res) => {
       SellerPassword,
     } = req.body;
 
-    // Validate
+    // Validate input
     if (
       !SellerName ||
       !SellerEmail ||
@@ -95,7 +113,7 @@ const SellerSignup = async (req, res) => {
       });
     }
 
-    // Check email
+    // Check if email is already registered
     const exists = await SellerAuthenticationModel.findOne({ SellerEmail });
     if (exists) {
       return res.status(409).json({
@@ -107,6 +125,7 @@ const SellerSignup = async (req, res) => {
     // Hash password
     const hashedPassword = await bcryptjs.hash(SellerPassword, 10);
 
+    // Create a new seller
     const newSeller = new SellerAuthenticationModel({
       SellerName,
       SellerEmail,
@@ -120,9 +139,18 @@ const SellerSignup = async (req, res) => {
 
     await newSeller.save();
 
+    // Generate token for the new seller
+    const token = jwt.sign(
+      { id: newSeller._id }, // Include seller ID in the token payload
+      process.env.JWT_SECRET || "secret", // Use environment variable or fallback
+      { expiresIn: "1h" } // Set token expiration time
+    );
+
     res.status(201).json({
       success: true,
       message: "Signup successful!",
+      sellerId: newSeller._id, // Include the seller ID in the response
+      token, // Include the generated token
     });
   } catch (error) {
     console.error(error.message);

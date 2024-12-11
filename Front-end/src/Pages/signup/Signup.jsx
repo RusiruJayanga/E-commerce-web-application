@@ -1,46 +1,50 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./signup.css";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    userName: "",
-    userEmail: "",
-    userAddress: "",
-    phoneNumber: "",
-    password: "",
+    CustomerName: "",
+    CustomerEmail: "",
+    CustomerAddress: "",
+    CustomerPhoneNumber: "",
+    CustomerPassword: "",
   });
 
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation(); // To get the previous page
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.userName.trim()) {
-      newErrors.userName = "Username is required.";
-    } else if (formData.userName.length < 3) {
-      newErrors.userName = "Username must be at least 3 characters.";
+    if (!formData.CustomerName.trim()) {
+      newErrors.CustomerName = "Username is required.";
+    } else if (formData.CustomerName.length < 3) {
+      newErrors.CustomerName = "Username must be at least 3 characters.";
     }
-    if (!formData.userEmail.trim()) {
-      newErrors.userEmail = "Email is required.";
+    if (!formData.CustomerEmail.trim()) {
+      newErrors.CustomerEmail = "Email is required.";
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.userEmail)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.CustomerEmail)
     ) {
-      newErrors.userEmail = "Invalid email address.";
+      newErrors.CustomerEmail = "Invalid email address.";
     }
-    if (!formData.userAddress.trim()) {
-      newErrors.userAddress = "Address is required.";
-    } else if (formData.userAddress.length > 100) {
-      newErrors.userAddress = "Address cannot exceed 100 characters.";
+    if (!formData.CustomerAddress.trim()) {
+      newErrors.CustomerAddress = "Address is required.";
+    } else if (formData.CustomerAddress.length > 100) {
+      newErrors.CustomerAddress = "Address cannot exceed 100 characters.";
     }
-    if (!formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = "Phone number is required.";
-    } else if (!/^\d{10,15}$/.test(formData.phoneNumber)) {
-      newErrors.phoneNumber = "Enter a valid phone number.";
+    if (!formData.CustomerPhoneNumber.trim()) {
+      newErrors.CustomerPhoneNumber = "Phone number is required.";
+    } else if (!/^\d{10,15}$/.test(formData.CustomerPhoneNumber)) {
+      newErrors.CustomerPhoneNumber = "Enter a valid phone number.";
     }
-    if (!formData.password.trim()) {
-      newErrors.password = "Password is required.";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters.";
+    if (!formData.CustomerPassword.trim()) {
+      newErrors.CustomerPassword = "Password is required.";
+    } else if (formData.CustomerPassword.length < 6) {
+      newErrors.CustomerPassword = "Password must be at least 6 characters.";
     }
     return newErrors;
   };
@@ -50,28 +54,44 @@ const Signup = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-    } else {
-      setErrors({});
-      console.log("Sign-up successful:", formData);
-      alert("Sign-up successful!");
-      setFormData({
-        userName: "",
-        userEmail: "",
-        userAddress: "",
-        phoneNumber: "",
-        password: "",
-      });
+      return;
+    }
+
+    setErrors({});
+    setApiError("");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/customerauthentication/customersignup",
+        formData
+      );
+
+      if (response.data.success) {
+        // Store token in localStorage
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("customerId", response.data.customerId);
+        console.log("Login successful. Customer ID:", response.data.customerId);
+        alert("Signup successful! Welcome!");
+
+        // Redirect to the previous page or home
+        navigate("/");
+      } else {
+        setApiError(response.data.message || "Signup failed.");
+        alert("Signup failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+      alert("An error occurred during signup. Please try again.");
     }
   };
 
   return (
-    <div>
-      {/* Signup section */}
+    <div className="signup-main">
       <div className="signup-con">
         <h3 className="text-hili">Sign up</h3>
         <p>
@@ -82,61 +102,67 @@ const Signup = () => {
           <div className="signup-input-box">
             <input
               type="text"
-              name="userName"
+              name="CustomerName"
               placeholder="User name"
-              value={formData.userName}
+              value={formData.CustomerName}
               onChange={handleChange}
             />
-            {errors.userName && <p className="error">{errors.userName}</p>}
+            {errors.CustomerName && (
+              <p className="error">{errors.CustomerName}</p>
+            )}
           </div>
           <div className="signup-input-box">
             <input
-              type="text"
-              name="userEmail"
+              type="email"
+              name="CustomerEmail"
               placeholder="User email"
-              value={formData.userEmail}
+              value={formData.CustomerEmail}
               onChange={handleChange}
             />
-            {errors.userEmail && <p className="error">{errors.userEmail}</p>}
+            {errors.CustomerEmail && (
+              <p className="error">{errors.CustomerEmail}</p>
+            )}
           </div>
           <div className="signup-input-box">
             <input
               type="text"
-              name="userAddress"
+              name="CustomerAddress"
               placeholder="User address"
-              value={formData.userAddress}
+              value={formData.CustomerAddress}
               onChange={handleChange}
             />
-            {errors.userAddress && (
-              <p className="error">{errors.userAddress}</p>
+            {errors.CustomerAddress && (
+              <p className="error">{errors.CustomerAddress}</p>
             )}
           </div>
           <div className="signup-input-box">
             <input
               type="number"
-              name="phoneNumber"
+              name="CustomerPhoneNumber"
               placeholder="Valid telephone number"
-              value={formData.phoneNumber}
+              value={formData.CustomerPhoneNumber}
               onChange={handleChange}
             />
-            {errors.phoneNumber && (
-              <p className="error">{errors.phoneNumber}</p>
+            {errors.CustomerPhoneNumber && (
+              <p className="error">{errors.CustomerPhoneNumber}</p>
             )}
           </div>
           <div className="signup-input-box">
             <input
               type="password"
-              name="password"
+              name="CustomerPassword"
               placeholder="Password"
-              value={formData.password}
+              value={formData.CustomerPassword}
               onChange={handleChange}
             />
-            {errors.password && <p className="error">{errors.password}</p>}
+            {errors.CustomerPassword && (
+              <p className="error">{errors.CustomerPassword}</p>
+            )}
           </div>
           <button className="signup-button">Signup</button>
         </form>
         <Link to="/Login">
-          <p className="gap">You already have an account? please Login</p>
+          <p className="gap">You already have an account? Login</p>
         </Link>
       </div>
     </div>

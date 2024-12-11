@@ -7,6 +7,7 @@ import SellerAuthenticationRouter from "./routes/Seller_authentication_routes.js
 import CustomerAuthenticationRouter from "./routes/Customer_authentication_routes.js";
 import AdmincontactRouter from "./routes/Admin_contact_routes.js";
 import WishlistRouter from "./routes/Wish_list_routes.js";
+import ProductDisplayRouter from "./routes/Seller_all_products_routes.js";
 
 const app = express();
 const port = 3000;
@@ -20,7 +21,7 @@ connectDB();
 
 // API Endpoints
 //Product add
-app.use("/api/ecommerceproductadd", ECommerceRouter);
+app.use("/api/ecommerceproduct", ECommerceRouter);
 //Seller authentication
 app.use("/api/sellerauthentication", SellerAuthenticationRouter);
 //Seller authentication
@@ -29,6 +30,8 @@ app.use("/api/customerauthentication", CustomerAuthenticationRouter);
 app.use("/api/admincontact", AdmincontactRouter);
 //Wish list
 app.use("/api/wishlist", WishlistRouter);
+// Product display
+app.use("/api/products", ProductDisplayRouter);
 
 app.get("/", (req, res) => {
   res.send("Good to go");

@@ -1,0 +1,70 @@
+.seller-product-delete-modal-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+}
+
+.seller-product-delete-modal {
+  height: 300px;
+  width: 280px;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+.seller-product-delete-btn-cancel {
+  background-color: #3633bb;
+  width: 110px;
+  height: 45px;
+  border-radius: 3px;
+  border: 1px solid #3633bb;
+  font-size: 15px;
+  color: white;
+  transition: 300ms ease-out;
+  cursor: pointer;
+}
+
+.seller-product-delete-btn-submit {
+  background-color: #e74c3c;
+  width: 110px;
+  height: 45px;
+  border-radius: 3px;
+  border: 1px solid #e74c3c;
+  font-size: 15px;
+  color: white;
+  transition: 300ms ease-out;
+  cursor: pointer;
+}
+
+.seller-product-delete-close {
+  cursor: pointer;
+  font-size: 30px;
+  margin-top: -10px;
+}
+
+.seller-product-delete-modal-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.seller-product-delete-image {
+  height: 100px;
+  width: 100px;
+}
+
+.seller-product-delete-modal-content {
+  margin-bottom: 2rem;
+}
+
+.seller-product-delete-modal-footer {
+  display: flex;
+  justify-content: space-evenly;
+}/*# sourceMappingURL=seller_product_delete.css.map */

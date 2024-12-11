@@ -124,11 +124,20 @@ const CustomerSignup = async (req, res) => {
       CustomerPassword: hashedPassword,
     });
 
-    await newCustomer.save();
+    const savedCustomer = await newCustomer.save();
+
+    // Generate token for the new customer
+    const token = jwt.sign(
+      { id: savedCustomer._id },
+      process.env.JWT_SECRET || "secret",
+      { expiresIn: "1h" }
+    );
 
     res.status(201).json({
       success: true,
       message: "Signup successful!",
+      customerId: savedCustomer._id, // Include _id in the response
+      token, // Include the generated token
     });
   } catch (error) {
     console.error(error.message);

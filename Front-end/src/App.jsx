@@ -80,7 +80,7 @@ const App = () => {
         <Route path="/Chat" element={<Chat />} />
         <Route path="/New_orders" element={<New_orders />} />
         <Route path="/Delivered" element={<Delivered />} />
-        <Route path="/Seller_profile" element={<Seller_login />} />
+        <Route path="/Seller_profile" element={<Seller_profile />} />
         <Route path="/Account" element={<Account />} />
       </Routes>
       {/* Footer */}

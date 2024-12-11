@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
+import axios from "axios";
 import "./add_product.css";
 
 const Advertise = [
@@ -24,8 +25,8 @@ const Category = [
   { value: "Slippers", label: "Slippers" },
 ];
 
-const Add_product = () => {
-  const [file, setFile] = useState();
+const AddProduct = () => {
+  const [file, setFile] = useState(null);
   const [formData, setFormData] = useState({
     productName: "",
     shortDescription: "",
@@ -39,19 +40,28 @@ const Add_product = () => {
   });
   const [errors, setErrors] = useState({});
   const [filePreview, setFilePreview] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSelectChange = (name, value) => {
-    setFormData({ ...formData, [name]: value });
+  const handleSelectChange = (name, selected) => {
+    setFormData({ ...formData, [name]: selected });
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      const allowedFileTypes = ["image/jpeg", "image/png", "image/jpg"];
+      if (!allowedFileTypes.includes(file.type)) {
+        setErrors((prev) => ({
+          ...prev,
+          file: "Please upload a valid image file.",
+        }));
+        return;
+      }
       setFile(file);
       setFilePreview(URL.createObjectURL(file));
     }
@@ -99,15 +109,15 @@ const Add_product = () => {
       newErrors.quantity = "Please enter a valid quantity.";
     }
 
-    if (!formData.advertise) {
+    if (!formData.advertise?.value) {
       newErrors.advertise = "Please select an advertise option.";
     }
 
-    if (!formData.gender) {
+    if (!formData.gender?.value) {
       newErrors.gender = "Please select a gender option.";
     }
 
-    if (!formData.category) {
+    if (!formData.category?.value) {
       newErrors.category = "Please select a category.";
     }
 
@@ -119,17 +129,74 @@ const Add_product = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      console.log("Form submitted successfully:", formData, file);
-      // Submit form logic
+
+    if (!validate()) {
+      return;
+    }
+
+    const sellerId = localStorage.getItem("sellerId");
+    if (!sellerId) {
+      alert("Seller ID is missing. Please login again.");
+      return;
+    }
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("SellerID", sellerId);
+    formDataToSend.append("ProductName", formData.productName);
+    formDataToSend.append("ShortDescription", formData.shortDescription);
+    formDataToSend.append("LongDescription", formData.longDescription);
+    formDataToSend.append("Price", formData.price);
+    formDataToSend.append("Discount", formData.discount);
+    formDataToSend.append("Advertise", formData.advertise?.value || "");
+    formDataToSend.append("Quantity", formData.quantity);
+    formDataToSend.append("ForWho", formData.gender?.value || "");
+    formDataToSend.append("Category", formData.category?.value || "");
+    formDataToSend.append("productimage", file);
+
+    setLoading(true);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/ecommerceproduct/add",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.data.success) {
+        alert("Product added successfully!");
+        setFormData({
+          productName: "",
+          shortDescription: "",
+          longDescription: "",
+          price: "",
+          discount: "",
+          quantity: "",
+          advertise: null,
+          gender: null,
+          category: null,
+        });
+        setFile(null);
+        setFilePreview(null);
+        setErrors({});
+      } else {
+        alert(response.data.message || "Failed to add product.");
+      }
+    } catch (error) {
+      console.error("Error adding product:", error);
+      alert("An error occurred while adding the product. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
-      {/* Add section */}
       <div className="product-add-con">
         <h3 className="text-hili">Add a Product</h3>
         <p>
@@ -203,9 +270,8 @@ const Add_product = () => {
             <Select
               placeholder="Advertise"
               options={Advertise}
-              onChange={(selected) =>
-                handleSelectChange("advertise", selected.value)
-              }
+              value={formData.advertise}
+              onChange={(selected) => handleSelectChange("advertise", selected)}
             />
           </div>
           {errors.advertise && <p className="error">{errors.advertise}</p>}
@@ -223,9 +289,8 @@ const Add_product = () => {
             <Select
               placeholder="For who"
               options={Gender}
-              onChange={(selected) =>
-                handleSelectChange("gender", selected.value)
-              }
+              value={formData.gender}
+              onChange={(selected) => handleSelectChange("gender", selected)}
             />
           </div>
           {errors.gender && <p className="error">{errors.gender}</p>}
@@ -233,11 +298,10 @@ const Add_product = () => {
             <Select
               placeholder="Category"
               options={Category}
-              onChange={(selected) =>
-                handleSelectChange("category", selected.value)
-              }
+              value={formData.category}
+              onChange={(selected) => handleSelectChange("category", selected)}
             />
-          </div>{" "}
+          </div>
           {errors.category && <p className="error">{errors.category}</p>}
           <div className="product-add-input-box-image">
             <input
@@ -254,11 +318,13 @@ const Add_product = () => {
             )}
             {errors.file && <p className="error">{errors.file}</p>}
           </div>
-          <button className="product-add-button">Add</button>
+          <button className="product-add-button" disabled={loading}>
+            {loading ? "Adding..." : "Add"}
+          </button>
         </form>
       </div>
     </div>
   );
 };
 
-export default Add_product;
+export default AddProduct;

@@ -5,7 +5,7 @@ const AddProduct = async (req, res) => {
   let imageFileName = req.file?.filename || "default.jpg";
 
   const ECommerce = new ECommerceModel({
-    SellerEmail: req.body.SellerEmail,
+    SellerID: req.body.SellerID,
     ProductName: req.body.ProductName,
     ShortDescription: req.body.ShortDescription,
     LongDescription: req.body.LongDescription,

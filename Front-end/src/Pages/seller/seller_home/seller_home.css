@@ -10,47 +10,51 @@
 }
 
 .all-product-tbl thead {
-  background: #424949;
+  background: #251a14;
   color: #fff;
 }
 
 .all-product-tbl thead tr th {
-  font-size: 0.9rem;
+  font-size: 15px;
+  font-weight: 300;
   padding: 0.8rem;
-  letter-spacing: 0.2rem;
   vertical-align: top;
   border: 1px solid #aab7b8;
 }
 
+.seller-home-table-image {
+  width: 40px;
+  height: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
 .all-product-tbl tbody tr td {
-  font-size: 1rem;
-  letter-spacing: 0.2rem;
+  font-size: 15px;
+  font-weight: 300;
   font-weight: normal;
   text-align: center;
   border: 1px solid #aab7b8;
   padding: 0.8rem;
-}
-
-.all-product-tbl tr:nth-child(even) {
-  background: #ccc;
-  transition: all 0.3s ease-in;
   cursor: pointer;
 }
 
-.all-product-tbl tr:hover td {
-  background: #839192;
-  color: #000;
+.all-product-tbl tr:nth-child(even) {
+  background: #d4d4d4;
   transition: all 0.3s ease-in;
   cursor: pointer;
 }
 
 .all-product-tbl button {
   display: inline-block;
-  border: none;
   margin: 0 auto;
   padding: 0.4rem;
-  border-radius: 1px;
-  outline: none;
+  width: 60px;
+  height: 30px;
+  border-radius: 3px;
+  border: none;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -61,7 +65,7 @@
 
 .all-product-btn_edit {
   color: #fff;
-  background: #1e8449;
+  background: #3633bb;
 }
 
 @media (max-width: 768px) {

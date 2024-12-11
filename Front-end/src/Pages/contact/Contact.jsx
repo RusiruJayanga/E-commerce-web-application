@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import axios for HTTP requests
 import "./contact.css";
 
 const Contact = () => {
@@ -9,6 +10,8 @@ const Contact = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState(""); // To capture any API error message
+  const [isSubmitting, setIsSubmitting] = useState(false); // To disable the form while submitting
 
   const validate = () => {
     const newErrors = {};
@@ -28,19 +31,42 @@ const Contact = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      return;
     } else {
       setErrors({});
-      console.log("Form submitted successfully:", formData);
-      // You can add a function to send data to the server here
+    }
 
-      // Reset form
-      alert("Message sent!");
-      setFormData({ name: "", email: "", message: "" });
+    // Prepare data to be sent to the backend
+    const dataToSend = {
+      Name: formData.name,
+      Email: formData.email,
+      Message: formData.message,
+    };
+
+    setIsSubmitting(true); // Set submitting state to true
+
+    try {
+      // Sending the form data to the backend
+      const response = await axios.post(
+        "http://localhost:3000/api/admincontact/admincsendmessege",
+        dataToSend
+      );
+      if (response.data.success) {
+        alert("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" }); // Reset form after successful submission
+      } else {
+        setApiError(response.data.message || "Failed to send message.");
+      }
+    } catch (error) {
+      console.error("Error occurred while sending message:", error);
+      setApiError("An error occurred while sending your message.");
+    } finally {
+      setIsSubmitting(false); // Reset the submitting state
     }
   };
 
@@ -55,19 +81,19 @@ const Contact = () => {
       <div className="contact-con">
         <div className="contact-left-side">
           <div className="contact-address details">
-            <img className="ontact-icon" src="wish-list.png" alt="" />
+            <img className="contact-icon" src="wish-list.png" alt="" />
             <h4>Address</h4>
             <p>Lorem ipsum dolor sit</p>
             <p>Lorem ipsum dolor sit</p>
           </div>
           <div className="contact-phone details">
-            <img className="ontact-icon" src="wish-list.png" alt="" />
+            <img className="contact-icon" src="wish-list.png" alt="" />
             <h4>Phone</h4>
             <p>Lorem ipsum dolor sit</p>
             <p>Lorem ipsum dolor sit</p>
           </div>
           <div className="contact-email details">
-            <img className="ontact-icon" src="wish-list.png" alt="" />
+            <img className="contact-icon" src="wish-list.png" alt="" />
             <h4>Email</h4>
             <p>Lorem ipsum dolor sit</p>
             <p>Lorem ipsum dolor sit</p>
@@ -114,9 +140,15 @@ const Contact = () => {
                 {errors.message && <p className="error">{errors.message}</p>}
               </p>
             </div>
-            <button className="contact-button" type="submit">
-              Send
+            <button
+              className="contact-button"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send"}
             </button>
+            {apiError && <p className="error">{apiError}</p>}{" "}
+            {/* Display API error */}
           </form>
         </div>
       </div>

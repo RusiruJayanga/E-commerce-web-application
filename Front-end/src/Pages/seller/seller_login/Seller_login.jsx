@@ -55,8 +55,15 @@ const Seller_login = () => {
       );
 
       if (response.data.success) {
+        // Store token in localStorage
+        localStorage.setItem("sellertoken", response.data.token);
+        localStorage.setItem("sellerId", response.data.sellerId);
         console.log("Login successful:", response.data);
-        navigate("/Seller_home"); // Redirect to home page
+        console.log("Login successful. Customer ID:", response.data.sellerId);
+        alert("Welcome back!");
+
+        // Redirect to seller home page
+        navigate("/Seller_home");
       } else {
         setApiError(response.data.message || "Login failed.");
       }
