@@ -10,6 +10,7 @@ import WishlistRouter from "./routes/Wish_list_routes.js";
 import ProductDisplayRouter from "./routes/Seller_all_products_routes.js";
 import Delete from "./routes/Seller_product_de_ed_routes.js";
 import Update from "./routes/Product_edit_routes.js";
+import Display from "./routes/Home_product_display_routes.js";
 
 const app = express();
 const port = 3000;
@@ -35,10 +36,12 @@ app.use("/api/customerauthentication", CustomerAuthenticationRouter);
 app.use("/api/admincontact", AdmincontactRouter);
 //Wish list
 app.use("/api/wishlist", WishlistRouter);
-// Product display
-app.use("/api/products", ProductDisplayRouter);
+// Product seller display
+app.use("/api/productssellerdisplay", ProductDisplayRouter);
 // Product delete
-app.use("/api/products", Delete);
+app.use("/api/productsdelete", Delete);
+// Product display
+app.use("/api/productsdisplay", Display);
 
 app.get("/", (req, res) => {
   res.send("Good to go");

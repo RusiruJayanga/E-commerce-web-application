@@ -135,18 +135,26 @@
   box-shadow: -20px 20px 0 var(--background-color);
 }
 
+.card[style*="--isAdvertise:Hot"]::after {
+  background-color: #ff4500;
+}
+
+.card[style*="--isAdvertise:Offers"]::after {
+  background-color: #00a2ff;
+}
+
 .card::after {
-  background-color: orangered;
   position: absolute;
   top: 0;
   right: 0;
   height: 40px;
-  content: "HOT";
   font-size: 18px;
   width: calc(40% - 10px);
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: aliceblue;
+  color: #ffffff;
+  content: attr(--isAdvertise);
+  background-color: var(--isAdvertiseColor, transparent);
 }/*# sourceMappingURL=category_page.css.map */

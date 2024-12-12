@@ -16,7 +16,7 @@ const Seller_home = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/products?sellerID=${sellerID}`
+          `http://localhost:3000/api/productssellerdisplay?sellerID=${sellerID}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch products");
@@ -37,7 +37,7 @@ const Seller_home = () => {
   const handleDelete = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/products/${productId}`,
+        `http://localhost:3000/api/productsdelete/${productId}`,
         {
           method: "DELETE",
         }
