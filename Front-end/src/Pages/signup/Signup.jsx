@@ -75,7 +75,7 @@ const Signup = () => {
         // Store token in localStorage
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("customerId", response.data.customerId);
-        console.log("Login successful. Customer ID:", response.data.customerId);
+        console.log("Login successful.");
         alert("Signup successful! Welcome!");
 
         // Redirect to the previous page or home

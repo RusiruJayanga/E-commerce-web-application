@@ -6,7 +6,10 @@ export const Edit = ({ product, closeModal }) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate(`/editproduct/${product._id}`);
+    // Store the product ID in localStorage
+    localStorage.setItem("editProductId", product._id);
+    // Navigate to the editproduct page
+    navigate("/editproduct");
   };
 
   return (

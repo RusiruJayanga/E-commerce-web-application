@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 import axios from "axios";
-import { useParams } from "react-router-dom"; // to get productId from URL
 import "../add_product/add_product.css";
 
 const Advertise = [
@@ -27,7 +26,7 @@ const Category = [
 ];
 
 const EditProduct = () => {
-  const { productId } = useParams(); // Get the product ID from the URL
+  const productId = localStorage.getItem("editProductId");
   const [formData, setFormData] = useState({
     productName: "",
     shortDescription: "",
@@ -44,42 +43,7 @@ const EditProduct = () => {
   const [filePreview, setFilePreview] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Fetch product details when the page is loaded
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/ecommerceproduct/${productId}`
-        );
-        const product = response.data;
-
-        // Populate formData with the existing product details
-        setFormData({
-          productName: product.productName,
-          shortDescription: product.shortDescription,
-          longDescription: product.longDescription,
-          price: product.price,
-          discount: product.discount,
-          quantity: product.quantity,
-          advertise: { value: product.advertise, label: product.advertise },
-          gender: { value: product.forWho, label: product.forWho },
-          category: { value: product.category, label: product.category },
-        });
-
-        // Set the file preview if the product has an image
-        if (product.productImage) {
-          setFilePreview(product.productImage);
-        }
-      } catch (error) {
-        console.error("Error fetching product:", error);
-        alert("Failed to load product details.");
-      }
-    };
-
-    if (productId) {
-      fetchProduct();
-    }
-  }, [productId]);
+  // Remove the useEffect hook that was loading the product details
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -93,78 +57,13 @@ const EditProduct = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const allowedFileTypes = ["image/jpeg", "image/png", "image/jpg"];
-      if (!allowedFileTypes.includes(file.type)) {
-        setErrors((prev) => ({
-          ...prev,
-          file: "Please upload a valid image file.",
-        }));
-        return;
-      }
       setFile(file);
       setFilePreview(URL.createObjectURL(file));
     }
   };
 
-  const validate = () => {
-    const newErrors = {};
-
-    if (!formData.productName.trim()) {
-      newErrors.productName = "Product name is required.";
-    }
-    if (!formData.shortDescription.trim()) {
-      newErrors.shortDescription = "Short description is required.";
-    } else if (formData.shortDescription.length > 25) {
-      newErrors.shortDescription =
-        "Short description must not exceed 25 characters.";
-    }
-    if (!formData.longDescription.trim()) {
-      newErrors.longDescription = "Long description is required.";
-    } else if (formData.longDescription.length > 100) {
-      newErrors.longDescription =
-        "Long description must not exceed 100 characters.";
-    }
-    if (!formData.price || isNaN(formData.price) || formData.price <= 0) {
-      newErrors.price = "Please enter a valid price.";
-    }
-    if (
-      !formData.discount ||
-      isNaN(formData.discount) ||
-      formData.discount < 0 ||
-      formData.discount > 100
-    ) {
-      newErrors.discount = "Please enter a valid discount (0-100%).";
-    }
-    if (
-      !formData.quantity ||
-      isNaN(formData.quantity) ||
-      formData.quantity <= 0
-    ) {
-      newErrors.quantity = "Please enter a valid quantity.";
-    }
-    if (!formData.advertise?.value) {
-      newErrors.advertise = "Please select an advertise option.";
-    }
-    if (!formData.gender?.value) {
-      newErrors.gender = "Please select a gender option.";
-    }
-    if (!formData.category?.value) {
-      newErrors.category = "Please select a category.";
-    }
-    if (!file) {
-      newErrors.file = "Please upload an image.";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!validate()) {
-      return;
-    }
 
     const sellerId = localStorage.getItem("sellerId");
     if (!sellerId) {
@@ -183,29 +82,28 @@ const EditProduct = () => {
     formDataToSend.append("Quantity", formData.quantity);
     formDataToSend.append("ForWho", formData.gender?.value || "");
     formDataToSend.append("Category", formData.category?.value || "");
-    formDataToSend.append("productimage", file);
+    if (file) {
+      formDataToSend.append("productimage", file);
+    }
 
     setLoading(true);
 
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/ecommerceproduct/update/${productId}`,
+        `http://localhost:3000/api/ecommerceproductedit/update/${productId}`,
         formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
 
       if (response.data.success) {
         alert("Product updated successfully!");
+        localStorage.removeItem("editProductId"); // Remove editProductId from localStorage
       } else {
         alert(response.data.message || "Failed to update product.");
       }
     } catch (error) {
       console.error("Error updating product:", error);
-      alert("An error occurred while updating the product. Please try again.");
+      alert("An error occurred while updating the product.");
     } finally {
       setLoading(false);
     }

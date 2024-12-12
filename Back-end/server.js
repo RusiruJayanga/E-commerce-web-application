@@ -9,6 +9,7 @@ import AdmincontactRouter from "./routes/Admin_contact_routes.js";
 import WishlistRouter from "./routes/Wish_list_routes.js";
 import ProductDisplayRouter from "./routes/Seller_all_products_routes.js";
 import Delete from "./routes/Seller_product_de_ed_routes.js";
+import Update from "./routes/Product_edit_routes.js";
 
 const app = express();
 const port = 3000;
@@ -24,6 +25,8 @@ connectDB();
 // API Endpoints
 //Product add
 app.use("/api/ecommerceproduct", ECommerceRouter);
+//Product update
+app.use("/api/ecommerceproductedit", Update);
 //Seller authentication
 app.use("/api/sellerauthentication", SellerAuthenticationRouter);
 //Seller authentication

@@ -112,7 +112,7 @@ const Seller_signup = () => {
         // Store the token in localStorage
         localStorage.setItem("sellertoken", response.data.token);
         localStorage.setItem("sellerId", response.data.sellerId);
-        console.log("Login successful. Customer ID:", response.data.sellerId);
+        console.log("Login successful.");
         alert("Signup successful! Welcome!");
         // Redirect to seller home
         navigate("/Seller_home");

@@ -56,7 +56,7 @@ const Login = () => {
         // Save token and customerId to localStorage
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("customerId", response.data.customerId); // Save customerId
-        console.log("Login successful:", response.data);
+        console.log("Login successful");
 
         alert("Welcome back!");
         // Redirect
