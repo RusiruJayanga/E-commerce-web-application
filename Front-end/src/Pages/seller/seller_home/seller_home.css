@@ -40,7 +40,7 @@
 }
 
 .all-product-tbl tr:nth-child(even) {
-  background: #d4d4d4;
+  background: #f0efeb;
   transition: all 0.3s ease-in;
 }
 

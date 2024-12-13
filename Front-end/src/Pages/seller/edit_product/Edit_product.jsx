@@ -151,10 +151,10 @@ const EditProduct = () => {
               name="longDescription"
               value={formData.longDescription}
               onChange={handleInputChange}
-              placeholder="Enter long description (Limit to 100 characters)"
+              placeholder="Enter long description (Limit to 250 characters)"
             />
             <p className="char-count">
-              {formData.longDescription.length}/100 characters
+              {formData.longDescription.length}/250 characters
             </p>
             {errors.longDescription && (
               <p className="error">{errors.longDescription}</p>

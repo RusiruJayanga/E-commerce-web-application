@@ -189,4 +189,16 @@
     width: 500px;
     height: 450px;
   }
+}
+.show-more-button {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #f0efeb;
+  color: #873e23;
+  border: none;
+  cursor: pointer;
 }/*# sourceMappingURL=home.css.map */

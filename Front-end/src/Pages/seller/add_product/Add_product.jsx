@@ -83,9 +83,9 @@ const AddProduct = () => {
 
     if (!formData.longDescription.trim()) {
       newErrors.longDescription = "Long description is required.";
-    } else if (formData.longDescription.length > 100) {
+    } else if (formData.longDescription.length > 250) {
       newErrors.longDescription =
-        "Long description must not exceed 100 characters.";
+        "Long description must not exceed 150 characters.";
     }
 
     if (!formData.price || isNaN(formData.price) || formData.price <= 0) {
@@ -237,10 +237,10 @@ const AddProduct = () => {
               name="longDescription"
               value={formData.longDescription}
               onChange={handleInputChange}
-              placeholder="Enter long description (Limit to 100 characters)"
+              placeholder="Enter long description (Limit to 250 characters)"
             />
             <p className="char-count">
-              {formData.longDescription.length}/100 characters
+              {formData.longDescription.length}/250 characters
             </p>
             {errors.longDescription && (
               <p className="error">{errors.longDescription}</p>

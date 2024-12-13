@@ -24,6 +24,10 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate();
+  const [noofelement, setnoofelement] = useState(4);
+  const showmore = () => {
+    setnoofelement(noofelement + noofelement);
+  };
 
   // Fetch products from back-end
   useEffect(() => {
@@ -57,12 +61,33 @@ const Home = () => {
   };
 
   const handleCardClick = (productId) => {
-    localStorage.setItem("ProductId", productId);
-    navigate(`/Product_details`);
+    navigate(`/Product_details`, { state: { productId } });
   };
+
+  const slice = products.slice(0, noofelement);
 
   return (
     <div>
+      {/* Img section 1 */}
+      <section className="section-image home-bg1">
+        <div className="section-image-left">
+          <div>
+            <h4 className="text-hili">Lorem ipsum dolor sit </h4>
+            <h1>BLACK FRIDAY</h1>
+            <p>
+              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
+            </p>
+            <button className="section-image-button">Shop Now</button>
+          </div>
+        </div>
+        <div className="section-image-right">
+          <img
+            className="section-image-img"
+            src="section1-right-img.png"
+            alt=""
+          />
+        </div>
+      </section>
       {/* Category Slider Section */}
       <Slider {...sliderSettings}>
         {categories.map((category, idx) => (
@@ -94,7 +119,7 @@ const Home = () => {
 
       {/* Product Card Section */}
       <div className="grid-container">
-        {products.map((product) => (
+        {slice.map((product) => (
           <article
             className={`card ${product.Advertise === "Hot" ? "hot" : ""} ${
               product.Advertise === "Offers" ? "offers" : ""
@@ -143,6 +168,54 @@ const Home = () => {
           </article>
         ))}
       </div>
+      <button className="show-more-button" onClick={() => showmore()}>
+        Show more
+      </button>
+      {/* Img section 2 */}
+      <section className="section-image home-bg2">
+        <div className="section-image-left">
+          <div>
+            <h4 className="text-hili">Lorem ipsum dolor sit </h4>
+            <h1>BLACK FRIDAY</h1>
+            <p>
+              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
+            </p>
+          </div>
+        </div>
+        <div className="section-image-right">
+          <img
+            className="section-image-img"
+            src="section1-right-img.png"
+            alt=""
+          />
+        </div>
+      </section>
+      {/* Dit section */}
+      <section className="section2">
+        <div className="section2-card">
+          <img className="section2-img" src="section2-main-bg.jpeg" alt="" />
+          <div className="section2-dis">
+            <h4 className="section2-dis-head text-hili">Lorem ipsum dolor</h4>
+            <p className="section2-dis-text">
+              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor
+              sitLorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
+              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor
+              sitLorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
+              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor
+              sitLorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
+              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor
+              sitLorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
+            </p>
+            <ul className="section2-dis-li">
+              <li>Lorem ipsum dolor sitLorem </li>
+              <li>Lorem ipsum dolor sitLorem </li>
+              <li>Lorem ipsum dolor sitLorem </li>
+              <li>Lorem ipsum dolor sitLorem </li>
+              <li>Lorem ipsum dolor sitLorem </li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
