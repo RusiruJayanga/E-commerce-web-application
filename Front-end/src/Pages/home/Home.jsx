@@ -96,19 +96,21 @@ const Home = () => {
       <div className="grid-container">
         {products.map((product) => (
           <article
-            className="card"
+            className={`card ${product.Advertise === "Hot" ? "hot" : ""} ${
+              product.Advertise === "Offers" ? "offers" : ""
+            }`}
             key={product._id}
             onClick={() => handleCardClick(product._id)}
-            style={{
-              "--isAdvertise": product.Advertise,
-            }}
           >
             <div className="card-brand">
               <div>
-                <img src="brand-logo.jpg" alt={product.brand} />
+                <img
+                  src={`http://localhost:3000/uploads/${product.SellerID.LogoImageFile}`}
+                  alt={product.brand}
+                />
               </div>
               <div className="name">
-                <h4>{product.brand}</h4>
+                <h4>{product.SellerID.SellerName}</h4>
               </div>
             </div>
             <div className="card-image">

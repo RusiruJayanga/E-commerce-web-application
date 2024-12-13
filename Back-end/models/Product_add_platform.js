@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 
 const ECommerceSchema = new mongoose.Schema({
-  SellerID: { type: String, required: true },
+  SellerID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "sellerauthenticationrequest",
+    required: true,
+  },
   ProductName: { type: String, required: true },
   ShortDescription: { type: String, required: true },
   LongDescription: { type: String, required: true },

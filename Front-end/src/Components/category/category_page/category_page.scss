@@ -116,13 +116,16 @@
   box-shadow: -20px 20px 0 var(--background-color);
 }
 
-.card[style*="--isAdvertise:Hot"]::after {
+.card.hot::after {
   background-color: #ff4500;
+  content: "HOT";
 }
 
-.card[style*="--isAdvertise:Offers"]::after {
+.card.offers::after {
   background-color: #00a2ff;
+  content: "OFFERS";
 }
+
 .card::after {
   position: absolute;
   top: 0;
@@ -135,6 +138,4 @@
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  content: attr(--isAdvertise);
-  background-color: var(--isAdvertiseColor, transparent);
 }
