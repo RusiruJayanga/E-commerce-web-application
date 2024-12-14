@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const WishlistSchema = new mongoose.Schema({
+const PendingCartSchema = new mongoose.Schema({
   CustomerID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "customerauthentication",
@@ -11,8 +11,9 @@ const WishlistSchema = new mongoose.Schema({
     ref: "ecommerceproduct",
     required: true,
   },
+  Quantity: { type: Number, required: true },
 });
 
-const WishlistModel = mongoose.model("Wishlist", WishlistSchema);
+const PendingCartModel = mongoose.model("pendingcart", PendingCartSchema);
 
-export default WishlistModel;
+export default PendingCartModel;

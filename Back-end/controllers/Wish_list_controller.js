@@ -1,5 +1,4 @@
 import WishlistModel from "../models/Wish_list_platform.js";
-import validator from "validator";
 
 // Wish list
 const Wishlist = async (req, res) => {

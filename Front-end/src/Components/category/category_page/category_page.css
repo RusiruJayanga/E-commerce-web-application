@@ -16,6 +16,7 @@
   position: relative;
   color: white;
   margin-bottom: 50px;
+  cursor: pointer;
 }
 
 .card-brand {

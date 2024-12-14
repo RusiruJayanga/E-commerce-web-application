@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const WishlistSchema = new mongoose.Schema({
+const AskQuestionsSchema = new mongoose.Schema({
   CustomerID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "customerauthentication",
@@ -11,8 +11,10 @@ const WishlistSchema = new mongoose.Schema({
     ref: "ecommerceproduct",
     required: true,
   },
+  Question: { type: String, required: true },
+  Answer: { type: String, required: true },
 });
 
-const WishlistModel = mongoose.model("Wishlist", WishlistSchema);
+const AskQuestionsModel = mongoose.model("askquestions", AskQuestionsSchema);
 
-export default WishlistModel;
+export default AskQuestionsModel;

@@ -3,7 +3,13 @@ import "./seller_product_delete.css";
 
 export const Delete = ({ onSubmit, closeModal }) => {
   return (
-    <div className="seller-product-delete-modal-container">
+    <div
+      className="seller-product-delete-modal-container"
+      onClick={(e) => {
+        if (e.target.className === "seller-product-delete-modal-container")
+          closeModal("Modal was closed");
+      }}
+    >
       <div className="seller-product-delete-modal">
         <div
           className="seller-product-delete-modal-header"

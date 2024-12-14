@@ -14,7 +14,7 @@
   overflow: hidden;
   border: 1px solid #873e23;
   background-color: #f0efeb;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .product-details-image {
@@ -42,13 +42,13 @@
   margin-top: 20px;
   display: flex;
   border: 1px solid #873e23;
-  width: 132px;
+  width: 112px;
   border-radius: 10px;
 }
 
 .product-details-stepper-button {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   font-size: 30px;
   color: white;
   border: none;
@@ -67,8 +67,8 @@
 }
 
 .product-details-stepper-input {
-  width: 50px;
-  height: 40px;
+  width: 40px;
+  height: 35px;
   text-align: center;
   font-size: 15px;
   border: none;
@@ -229,7 +229,9 @@
   padding-left: 10px;
   border-radius: 5px;
   margin-top: 20px;
-  background-color: aliceblue;
+  background-color: #873e23;
+  color: #f0efeb;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1233px) {

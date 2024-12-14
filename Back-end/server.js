@@ -11,6 +11,10 @@ import ProductDisplayRouter from "./routes/Seller_all_products_routes.js";
 import Delete from "./routes/Seller_product_de_ed_routes.js";
 import Update from "./routes/Product_edit_routes.js";
 import Display from "./routes/Home_product_display_routes.js";
+import PendingCartRouter from "./routes/Pending_cart_routes.js";
+import Productdetails from "./routes/Product_details_routes.js";
+import AskQuestionsRouter from "./routes/Ask_questions_routes.js";
+import Questions from "./routes/Show_questions_routes.js";
 
 const app = express();
 const port = 3000;
@@ -42,6 +46,14 @@ app.use("/api/productssellerdisplay", ProductDisplayRouter);
 app.use("/api/productsdelete", Delete);
 // Product display
 app.use("/api/productsdisplay", Display);
+// Product add cart
+app.use("/api/pendingcart", PendingCartRouter);
+// Product details display
+app.use("/api/productsdetailsdisplay", Productdetails);
+// Product ask questions
+app.use("/api/productsaskquestions", AskQuestionsRouter);
+// Product show questions
+app.use("/api/productsshowquestions", Questions);
 
 app.get("/", (req, res) => {
   res.send("Good to go");

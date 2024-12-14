@@ -24,10 +24,6 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate();
-  const [noofelement, setnoofelement] = useState(4);
-  const showmore = () => {
-    setnoofelement(noofelement + noofelement);
-  };
 
   // Fetch products from back-end
   useEffect(() => {
@@ -64,7 +60,12 @@ const Home = () => {
     navigate(`/Product_details`, { state: { productId } });
   };
 
-  const slice = products.slice(0, noofelement);
+  const [visibleProduct, setVisibleProduct] = useState(4); // Initially show 5 questions
+
+  // Show more questions
+  const showMoreProduct = () => {
+    setVisibleProduct((prev) => prev + 4);
+  };
 
   return (
     <div>
@@ -119,7 +120,7 @@ const Home = () => {
 
       {/* Product Card Section */}
       <div className="grid-container">
-        {slice.map((product) => (
+        {products.slice(0, visibleProduct).map((product) => (
           <article
             className={`card ${product.Advertise === "Hot" ? "hot" : ""} ${
               product.Advertise === "Offers" ? "offers" : ""
@@ -168,9 +169,12 @@ const Home = () => {
           </article>
         ))}
       </div>
-      <button className="show-more-button" onClick={() => showmore()}>
-        Show more
-      </button>
+      {visibleProduct < products.length && (
+        <button className="show-more-button" onClick={showMoreProduct}>
+          Show more
+        </button>
+      )}
+
       {/* Img section 2 */}
       <section className="section-image home-bg2">
         <div className="section-image-left">

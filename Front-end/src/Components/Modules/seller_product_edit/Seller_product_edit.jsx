@@ -13,7 +13,13 @@ export const Edit = ({ product, closeModal }) => {
   };
 
   return (
-    <div className="seller-product-edit-modal-container">
+    <div
+      className="seller-product-edit-modal-container"
+      onClick={(e) => {
+        if (e.target.className === "seller-product-edit-modal-container")
+          closeModal("Modal was closed");
+      }}
+    >
       <div className="seller-product-edit-modal">
         <div
           className="seller-product-edit-modal-header"

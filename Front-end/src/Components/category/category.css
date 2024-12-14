@@ -9,6 +9,7 @@
   margin: 7px 10px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .category-slider-item-img {
