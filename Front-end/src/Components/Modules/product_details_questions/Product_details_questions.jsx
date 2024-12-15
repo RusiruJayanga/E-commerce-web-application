@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./product_details_questions.css";
 
-export const Questions = ({ onSubmit, onCancel, closeModal, productId }) => {
+export const Questionsm = ({ onSubmit, onCancel, closeModal, productId }) => {
   const [question, setQuestion] = useState("");
   const handleInputChange = (e) => {
     setQuestion(e.target.value);
@@ -33,7 +33,9 @@ export const Questions = ({ onSubmit, onCancel, closeModal, productId }) => {
           },
         }
       );
-      alert("Your question has been submitted!");
+      alert(
+        "Your question has been submitted! It can take a few minutes to update chat"
+      );
       onSubmit("Submit button was clicked");
     } catch (error) {
       console.error("Error submitting question:", error);

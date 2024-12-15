@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { createPortal } from "react-dom";
 import axios from "axios";
 import "./product_details.css";
-import { Questions } from "../../Components/Modules/product_details_questions/Product_details_questions";
+import { Questionsm } from "../../Components/Modules/product_details_questions/Product_details_questions";
 
 const Product_details = () => {
   const [noofelement, setnoofelement] = useState(4);
@@ -117,7 +117,31 @@ const Product_details = () => {
       alert("Failed to add item to  wish list. Please try again.");
     }
   };
-  // const slice = qustions.slice(0, noofelement);
+  const [Questions, setQuestions] = useState([]);
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/productsshowquestions/${productId}`
+        );
+        setQuestions(response.data);
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+      }
+    };
+
+    if (productId) {
+      fetchQuestions();
+    }
+  }, [productId]);
+
+  const [visibleQuestions, setVisibleQuestions] = useState(4); // Initially show 5 questions
+
+  // Show more questions
+  const showMoreQuestions = () => {
+    setVisibleQuestions((prev) => prev + 4);
+  };
+
   return (
     <div>
       {product ? (
@@ -133,7 +157,10 @@ const Product_details = () => {
             <h3 className="text-hili">{product.ProductName}</h3>
             <h4>{product.ShortDescription}</h4>
             <p className="product-details-top">{product.LongDescription}</p>
-            <h4 className="product-details-top text-hili">${product.Price}</h4>
+            <h4 className="product-details-top text-hili">
+              ${product.Price - (product.Price * product.Discount) / 100}
+            </h4>
+            <h5 className="product-details-discount">${product.Price}</h5>
             <div className="product-details-stepper">
               <button
                 className="product-details-stepper-button button-left"
@@ -182,25 +209,42 @@ const Product_details = () => {
       {/* Chat Section */}
       <section className="product-chat-con">
         {/* repeat*/}
-        <div className="product-chat">
-          <p className="product-chat-lable-customer text-hili">
-            <img className="product-chat-image" src="user-logo.png" alt="" />
-            Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sitLorem
-            ipsum dolor sitLorem ipsum dolor sitLorem
-          </p>
-          <p className="product-chat-lable-seller">
-            Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sitLorem
-            ipsum dolor sitLorem ipsum dolor sitLorem{" "}
-            <img className="product-chat-image" src="brand-logo.jpg" alt="" />
-          </p>
-        </div>
+        {Questions.length > 0 &&
+          Questions.slice(0, visibleQuestions).map((question) => (
+            <div className="product-chat">
+              <p className="product-chat-lable-customer text-hili">
+                <img
+                  className="product-chat-image"
+                  src="user-logo.png"
+                  alt=""
+                />
+                {question.Question}
+              </p>
+              <p className="product-chat-lable-seller">
+                {question.Answer}
+                <img
+                  className="product-chat-image"
+                  src={
+                    question.ProductID &&
+                    question.ProductID.SellerID &&
+                    question.ProductID.SellerID.LogoImageFile
+                      ? `http://localhost:3000/uploads/${question.ProductID.SellerID.LogoImageFile}`
+                      : "default-logo.png"
+                  }
+                  alt=""
+                />
+              </p>
+            </div>
+          ))}
         {/* repeat*/}
-        <button
-          className="product-chat-show-more-button"
-          onClick={() => showmore()}
-        >
-          Show more
-        </button>
+        {visibleQuestions < Questions.length && (
+          <button
+            className="product-chat-show-more-button"
+            onClick={showMoreQuestions}
+          >
+            Show more
+          </button>
+        )}
         <button
           className="product-chat-input"
           onClick={() => setModalOpen(true)}
@@ -209,12 +253,12 @@ const Product_details = () => {
         </button>
         {modalOpen &&
           createPortal(
-            <Questions
+            <Questionsm
               closeModal={handleButtonClick}
               onSubmit={handleButtonClick}
               onCancel={handleButtonClick}
               productId={productId}
-            ></Questions>,
+            ></Questionsm>,
             document.body
           )}
       </section>

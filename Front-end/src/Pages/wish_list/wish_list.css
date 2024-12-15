@@ -1,1 +1,89 @@
-/*# sourceMappingURL=wish_list.css.map */
+.wish-container {
+  width: 100%;
+  margin-top: 60px;
+  background: #fff;
+}
+
+.wish-tbl {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wish-tbl thead tr th {
+  font-size: 17px;
+  padding: 0.8rem;
+  font-weight: 300;
+  vertical-align: top;
+}
+
+.wish-tbl tbody tr td {
+  font-size: 15px;
+  font-weight: 300;
+  text-align: center;
+  border-top: 1px solid #aab7b8;
+  border-bottom: 1px solid #aab7b8;
+  padding: 0.8rem;
+}
+
+.wish-image {
+  width: 60px;
+  height: 60px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.wish-btn {
+  color: #fff;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.4rem;
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.trash {
+  background: #e74c3c;
+}
+
+.view {
+  background: #3633bb;
+}
+
+@media (max-width: 768px) {
+  .wish-tbl thead {
+    display: none;
+  }
+  .wish-tbl tr,
+  .wish-tbl td {
+    display: block;
+    width: 100%;
+  }
+  .wish-tbl tr {
+    margin-bottom: 1rem;
+  }
+  .wish-tbl tbody tr td {
+    text-align: right;
+    position: relative;
+    transition: all 0.2s ease-in;
+  }
+  .wish-tbl td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 1.2rem;
+    text-align: left;
+  }
+  .wish-tbl tbody tr td:hover {
+    background: #ccc;
+    color: #000;
+  }
+  .wish-tbl_content {
+    padding: 1rem;
+  }
+}/*# sourceMappingURL=wish_list.css.map */

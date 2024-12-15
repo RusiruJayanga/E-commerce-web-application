@@ -1,1 +1,46 @@
-/*# sourceMappingURL=account.css.map */
+.account-details-con {
+  margin-top: 60px;
+  width: 60%;
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #873e23;
+  border-radius: 5px;
+}
+
+.account-details-image {
+  width: 150px;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.account-details-details {
+  width: 500px;
+  height: 150px;
+}
+
+.account-details-content {
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 1050px) {
+  .account-details-con {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 725px) {
+  .account-details-con {
+    display: block;
+    text-align: center;
+  }
+  .account-details-image {
+    margin-bottom: 10px;
+  }
+  .account-details-details {
+    width: 100%;
+    text-align: left;
+  }
+}/*# sourceMappingURL=account.css.map */

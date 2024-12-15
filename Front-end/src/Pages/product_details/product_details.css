@@ -38,6 +38,10 @@
   margin-left: 10px;
 }
 
+.product-details-discount {
+  text-decoration: line-through;
+}
+
 .product-details-stepper {
   margin-top: 20px;
   display: flex;
@@ -174,23 +178,23 @@
 }
 
 .product-chat-lable-customer {
-  width: 70%;
+  width: 100%;
   height: auto;
   margin-right: auto;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: left;
   text-align: left;
   gap: 20px;
 }
 
 .product-chat-lable-seller {
-  width: 70%;
+  width: 100%;
   height: auto;
   margin-left: auto;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: right;
   text-align: right;
   gap: 20px;
   margin-top: 10px;

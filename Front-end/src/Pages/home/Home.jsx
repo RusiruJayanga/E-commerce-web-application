@@ -154,7 +154,9 @@ const Home = () => {
             <div className="card-more">
               <div className="card-options">
                 <label htmlFor="">Price - </label>
-                <label htmlFor="">${product.Price}</label>
+                <label htmlFor="">
+                  ${product.Price - (product.Price * product.Discount) / 100}
+                </label>
               </div>
               <div className="buttons">
                 <button className="card-wish-button">
