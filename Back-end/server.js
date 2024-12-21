@@ -15,6 +15,10 @@ import PendingCartRouter from "./routes/Pending_cart_routes.js";
 import Productdetails from "./routes/Product_details_routes.js";
 import AskQuestionsRouter from "./routes/Ask_questions_routes.js";
 import Questions from "./routes/Show_questions_routes.js";
+import DisplayMen from "./routes/Men_product_display_routes.js";
+import DisplayWomen from "./routes/Women_product_display_routes.js";
+import DisplayHot from "./routes/Hot_product_display_routes.js";
+import DisplayOffer from "./routes/Offer_product_display_routes.js";
 
 const app = express();
 const port = 3000;
@@ -46,6 +50,14 @@ app.use("/api/productssellerdisplay", ProductDisplayRouter);
 app.use("/api/productsdelete", Delete);
 // Product display
 app.use("/api/productsdisplay", Display);
+// Product men display
+app.use("/api/productsdisplaymen", DisplayMen);
+// Product women display
+app.use("/api/productsdisplaywomen", DisplayWomen);
+// Product hot display
+app.use("/api/productsdisplayhot", DisplayHot);
+// Product offer display
+app.use("/api/productsdisplayoffers", DisplayOffer);
 // Product add cart
 app.use("/api/pendingcart", PendingCartRouter);
 // Product details display

@@ -135,11 +135,11 @@ const Product_details = () => {
     }
   }, [productId]);
 
-  const [visibleQuestions, setVisibleQuestions] = useState(4); // Initially show 5 questions
+  const [visibleQuestions, setVisibleQuestions] = useState(3); // Initially show 5 questions
 
   // Show more questions
   const showMoreQuestions = () => {
-    setVisibleQuestions((prev) => prev + 4);
+    setVisibleQuestions((prev) => prev + 3);
   };
 
   return (

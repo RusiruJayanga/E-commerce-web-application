@@ -1,9 +1,14 @@
 import ECommerceModel from "../models/Product_add_platform.js";
 
-const Display = async (req, res) => {
+const DisplayHot = async (req, res) => {
   try {
     const { category } = req.query;
-    const query = category ? { Category: category } : {};
+
+    // Add condition to only include products where ForWho is "Men"
+    const query = { Advertise: "Hot" };
+    if (category) {
+      query.Category = category; // Add category filter if provided
+    }
 
     // Fetch products and populate seller details
     const products = await ECommerceModel.find(query).populate(
@@ -17,4 +22,4 @@ const Display = async (req, res) => {
   }
 };
 
-export default Display;
+export default DisplayHot;
