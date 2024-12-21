@@ -19,6 +19,7 @@ import DisplayMen from "./routes/Men_product_display_routes.js";
 import DisplayWomen from "./routes/Women_product_display_routes.js";
 import DisplayHot from "./routes/Hot_product_display_routes.js";
 import DisplayOffer from "./routes/Offer_product_display_routes.js";
+import WishlistDisplay from "./routes/Wish_list_display_routes.js";
 
 const app = express();
 const port = 3000;
@@ -38,7 +39,7 @@ app.use("/api/ecommerceproduct", ECommerceRouter);
 app.use("/api/ecommerceproductedit", Update);
 //Seller authentication
 app.use("/api/sellerauthentication", SellerAuthenticationRouter);
-//Seller authentication
+//Customer authentication
 app.use("/api/customerauthentication", CustomerAuthenticationRouter);
 //Admin contact
 app.use("/api/admincontact", AdmincontactRouter);
@@ -66,6 +67,8 @@ app.use("/api/productsdetailsdisplay", Productdetails);
 app.use("/api/productsaskquestions", AskQuestionsRouter);
 // Product show questions
 app.use("/api/productsshowquestions", Questions);
+// Wishlist display
+app.use("/api/wishlistdisplay", WishlistDisplay);
 
 app.get("/", (req, res) => {
   res.send("Good to go");

@@ -1,7 +1,17 @@
 import React from "react";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import { Seller_answer } from "../../../Components/Modules/seller_answer/Seller_answer";
 import "./chat.css";
 
 const Chat = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const handleButtonClick = (value) => {
+    setModalOpen(false);
+    setMessage(value);
+  };
+
   return (
     <div>
       <div class="seller-chat-container">
@@ -9,27 +19,35 @@ const Chat = () => {
           <table className="seller-chat-tbl">
             <thead>
               <tr>
-                <th>User ID</th>
-                <th>User ID</th>
-                <th>User Name</th>
-                <th>User Email</th>
-                <th>Status</th>
-                <th colspan="2">Action</th>
+                <th></th>
+                <th>Product Name</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {/* Repeat start */}
               <tr>
-                <td data-label="User Id">0001</td>
-                <td data-label="User Id">0001</td>
-                <td data-label="Name">John Doe</td>
-                <td data-label="Email">John@gmail.com</td>
-                <td data-label="Status">Active</td>
-                <td data-label="Edit">
-                  <button className="seller-chat-btn_edit"></button>
+                <td>
+                  <img className="seller-chat-table-image" src="edit.png" />
                 </td>
-                <td data-label="Delete">
-                  <button className="seller-chat-btn_trash"></button>
+                <td data-label="Product Name">0001</td>
+                <td data-label="Question" className="seller-chat-qa">
+                  John Doe Lorem ipsum dolor sit amet consectetur, adipisicing
+                  elit. Labore, obcaecati?
+                </td>
+                <td data-label="Answer" className="seller-chat-qa">
+                  John@gmail.comJohn Doe Lorem ipsum dolor sit amet consectetur,
+                  adipisicing elit. Labore, obcaecati?
+                </td>
+                <td data-label="Action">
+                  <button
+                    className="seller-chat-btn_reply"
+                    onClick={() => setModalOpen(true)}
+                  >
+                    Reply
+                  </button>
                 </td>
               </tr>
               {/* Repeat end */}
@@ -37,6 +55,19 @@ const Chat = () => {
           </table>
         </div>
       </div>
+      {modalOpen &&
+        createPortal(
+          <Seller_answer
+            closeModal={handleButtonClick}
+            onSubmit={handleButtonClick}
+            onCancel={handleButtonClick}
+          >
+            <h1>This is a modal</h1>
+            <br />
+            <p>This is the modal description</p>
+          </Seller_answer>,
+          document.body
+        )}
     </div>
   );
 };

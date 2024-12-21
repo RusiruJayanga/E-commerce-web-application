@@ -26,6 +26,7 @@ const Navbar = () => {
   const handleLogout = () => {
     // Remove the token from localStorage
     localStorage.removeItem("token");
+    localStorage.removeItem("customerId");
     setIsLoggedIn(false);
     setDropdownVisible(false);
     navigate("/"); // Redirect to the home page
@@ -127,12 +128,6 @@ const Navbar = () => {
             className={manu === "Hot" ? "active" : ""}
           >
             <NavLink to="/Hot">HOT</NavLink>
-          </li>
-          <li
-            onClick={() => set_manue("Contact")}
-            className={manu === "Contact" ? "active" : ""}
-          >
-            <NavLink to="/Contact">CONTACT</NavLink>
           </li>
         </ul>
       </nav>

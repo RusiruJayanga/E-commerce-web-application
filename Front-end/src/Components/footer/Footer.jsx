@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -46,7 +47,11 @@ const Footer = () => {
               consequatur maxime recusandae ut nobis nihil mollitia? Dolorum
               nostrum maiores molestias eveniet.
             </p>
-            <div className="icons"></div>
+            <div className="icons">
+              <Link to="/Contact">
+                <button className="footer-contact-button">Contact</button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
