@@ -10,12 +10,12 @@ const generateToken = (sellerId) => {
   });
 };
 
-// Seller login
 const SellerLogin = async (req, res) => {
   const { SellerEmail, SellerPassword } = req.body;
 
   // Validate input
   if (!SellerEmail || !SellerPassword) {
+    console.log("Validation failed: Missing fields");
     return res.status(400).json({
       success: false,
       message: "All fields are required.",
@@ -23,30 +23,57 @@ const SellerLogin = async (req, res) => {
   }
 
   if (!validator.isEmail(SellerEmail)) {
+    console.log("Validation failed: Invalid email format");
     return res.status(400).json({
       success: false,
-      message: "Invalid email format.",
+      message: "Invalid email format",
     });
   }
 
   try {
     // Check if email exists
     const seller = await SellerAuthenticationModel.findOne({ SellerEmail });
-
     if (!seller) {
+      console.log("Seller not found with email:", SellerEmail);
       return res.status(410).json({
         success: false,
         message: "Your email is not registered. Please register.",
       });
     }
 
-    // Validate password
+    if (seller.Status === "rejected") {
+      console.log("Seller account rejected:", SellerEmail);
+      return res.status(403).json({
+        success: false,
+        message: "Your account has been rejected. Please contact support.",
+      });
+    }
+
+    if (seller.Status === "pending") {
+      console.log("Seller account pending:", SellerEmail);
+      return res.status(403).json({
+        success: false,
+        message: "Your account is not approved yet. Please wait for approval.",
+        additionalInfo:
+          "You will receive a notification once your account is approved.",
+      });
+    }
+
+    if (seller.Status !== "accepted") {
+      console.log("Seller account not accepted:", SellerEmail);
+      return res.status(403).json({
+        success: false,
+        message: "Your account is not yet approved. Please contact support.",
+      });
+    }
+
+    // Validate password ,if the status is accepted
     const isMatch = await bcryptjs.compare(
       SellerPassword,
       seller.SellerPassword
     );
-
     if (!isMatch) {
+      console.log("Password mismatch for seller:", SellerEmail);
       return res.status(410).json({
         success: false,
         message: "Your email or password is incorrect!",
@@ -54,11 +81,8 @@ const SellerLogin = async (req, res) => {
     }
 
     // Generate token for the seller
-    const token = jwt.sign(
-      { id: seller._id }, // Include seller ID in the token payload
-      process.env.JWT_SECRET || "secret", // Use environment variable or fallback
-      { expiresIn: "1h" } // Set token expiration time
-    );
+    const token = generateToken(seller._id);
+    console.log("Login successful for seller:", SellerEmail);
 
     return res.status(200).json({
       success: true,
@@ -67,7 +91,7 @@ const SellerLogin = async (req, res) => {
       token, // Include the generated token
     });
   } catch (error) {
-    console.error(error.message);
+    console.error("Error during seller login:", error.message);
     res.status(500).json({
       success: false,
       message: "Failed to login.",
@@ -100,6 +124,7 @@ const SellerSignup = async (req, res) => {
       !SellerDescription ||
       !SellerGeolocation
     ) {
+      console.log("Validation failed: Missing fields");
       return res.status(400).json({
         success: false,
         message: "All fields are required.",
@@ -107,6 +132,7 @@ const SellerSignup = async (req, res) => {
     }
 
     if (!validator.isEmail(SellerEmail)) {
+      console.log("Validation failed: Invalid email format");
       return res.status(400).json({
         success: false,
         message: "Invalid email format.",
@@ -116,6 +142,7 @@ const SellerSignup = async (req, res) => {
     // Check if email is already registered
     const exists = await SellerAuthenticationModel.findOne({ SellerEmail });
     if (exists) {
+      console.log("Email already registered:", SellerEmail);
       return res.status(409).json({
         success: false,
         message: "Email is already registered.",
@@ -138,22 +165,14 @@ const SellerSignup = async (req, res) => {
     });
 
     await newSeller.save();
+    console.log("Seller account created");
 
-    // Generate token for the new seller
-    const token = jwt.sign(
-      { id: newSeller._id }, // Include seller ID in the token payload
-      process.env.JWT_SECRET || "secret", // Use environment variable or fallback
-      { expiresIn: "1h" } // Set token expiration time
-    );
-
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Signup successful!",
-      sellerId: newSeller._id, // Include the seller ID in the response
-      token, // Include the generated token
     });
   } catch (error) {
-    console.error(error.message);
+    console.error("Error during seller signup:", error.message);
     res.status(500).json({
       success: false,
       message: "Failed to signup.",

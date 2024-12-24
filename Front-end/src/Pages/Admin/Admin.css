@@ -1,0 +1,69 @@
+/* Admin.css */
+
+.table-container {
+  margin: 20px auto;
+  width: 90%;
+  overflow-x: auto;
+}
+
+.Admin-h1,
+.Admin-h2 {
+  text-align: center;
+  color: #333;
+  font-family: "Arial", sans-serif;
+}
+
+.Admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+}
+
+.Admin-th,
+.Admin-td {
+  padding: 12px 15px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.Admin-th {
+  background-color: #4caf50;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.Admin-tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.Admin-tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.Admin-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.Admin-button:hover {
+  background-color: #e60000;
+}
+
+.Admin-img {
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}

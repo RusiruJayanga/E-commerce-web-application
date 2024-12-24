@@ -9,6 +9,11 @@ const SellerauthenticationSchema = new mongoose.Schema({
   SellerDescription: { type: String, required: true },
   SellerPassword: { type: String, required: true },
   LogoImageFile: { type: String, required: true },
+  Status: {
+    type: String,
+    enum: ["accepted", "rejected", "pending"],
+    default: "pending",
+  },
 });
 
 const SellerAuthenticationModel = mongoose.model(

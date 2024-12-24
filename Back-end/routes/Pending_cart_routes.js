@@ -1,9 +1,15 @@
 import express from "express";
-import { PendingCart } from "../controllers/Pending_cart_controller.js";
+import {
+  addToPendingCart,
+  getPendingCartItems,
+  removeFromPendingCart,
+} from "../controllers/Pending_cart_controller.js";
 
 const PendingCartRouter = express.Router();
 
-// Admin contact
-PendingCartRouter.post("/pendingcartadd", PendingCart);
+// Route to add items to the pending cart
+PendingCartRouter.post("/pendingcartadd", addToPendingCart);
 
+PendingCartRouter.get("/pendingcartfetch/:CustomerID", getPendingCartItems);
+PendingCartRouter.delete("/pendingcartremove/:id", removeFromPendingCart);
 export default PendingCartRouter;

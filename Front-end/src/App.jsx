@@ -25,6 +25,8 @@ import Seller_login from "./Pages/seller/seller_login/Seller_login";
 import Signup from "./Pages/signup/Signup";
 import Login from "./Pages/login/Login";
 import EditProduct from "./Pages/seller/edit_product/Edit_product";
+import Admin from "./Pages/Admin/Admin";
+import SellerDetail from "./Pages/Admin/SellerDetails";
 
 const App = () => {
   return (
@@ -84,6 +86,8 @@ const App = () => {
         <Route path="/Seller_profile" element={<Seller_profile />} />
         <Route path="/Account" element={<Account />} />
         <Route path="/editproduct" element={<EditProduct />} />
+        <Route path="/Admin" element={<Admin />} />
+        <Route path="/Admin/SellerDetails" element={<SellerDetail />} />
       </Routes>
       {/* Footer */}
       <Routes>

@@ -34,7 +34,7 @@ const Seller_login = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setApiError(""); // Clear API error on input change
+    setApiError("");
   };
 
   const handleSubmit = async (e) => {
@@ -67,8 +67,15 @@ const Seller_login = () => {
         setApiError(response.data.message || "Login failed.");
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      alert("Your email or password is incorrect!");
+      console.error(
+        "Error during login:",
+        error.response ? error.response.data.message : error.message
+      );
+      setApiError(
+        error.response
+          ? error.response.data.message
+          : "An error occurred. Please try again later."
+      );
     }
   };
 

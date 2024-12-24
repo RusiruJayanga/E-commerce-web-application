@@ -110,12 +110,12 @@ const Seller_signup = () => {
 
       if (response.data.success) {
         // Store the token in localStorage
-        localStorage.setItem("sellertoken", response.data.token);
-        localStorage.setItem("sellerId", response.data.sellerId);
         console.log("Login successful.");
-        alert("Signup successful! Welcome!");
+        alert(
+          "Signup successful! Wait until administration approve your account."
+        );
         // Redirect to seller home
-        navigate("/Seller_home");
+        navigate("/");
       } else {
         setApiError(response.data.message || "Signup failed.");
       }

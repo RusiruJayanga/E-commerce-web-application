@@ -10,58 +10,59 @@
 }
 
 .new-order-tbl thead {
-  background: #424949;
+  background: #251a14;
   color: #fff;
 }
 
 .new-order-tbl thead tr th {
-  font-size: 0.9rem;
+  font-size: 15px;
+  font-weight: 300;
   padding: 0.8rem;
-  letter-spacing: 0.2rem;
   vertical-align: top;
   border: 1px solid #aab7b8;
 }
 
+.new-order-table-image {
+  width: 40px;
+  height: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
 .new-order-tbl tbody tr td {
-  font-size: 1rem;
-  letter-spacing: 0.2rem;
-  font-weight: normal;
+  font-size: 15px;
+  font-weight: 300;
   text-align: center;
   border: 1px solid #aab7b8;
   padding: 0.8rem;
 }
 
-.new-order-tbl tr:nth-child(even) {
-  background: #ccc;
-  transition: all 0.3s ease-in;
-  cursor: pointer;
+.new-order-qa {
+  height: auto;
+  width: 400px;
 }
 
-.new-order-tbl tr:hover td {
-  background: #839192;
-  color: #000;
+.new-order-tbl tr:nth-child(even) {
+  background: #f0efeb;
   transition: all 0.3s ease-in;
-  cursor: pointer;
 }
 
 .new-order-tbl button {
   display: inline-block;
-  border: none;
   margin: 0 auto;
   padding: 0.4rem;
-  border-radius: 1px;
-  outline: none;
+  width: 60px;
+  height: 30px;
+  border-radius: 3px;
+  border: none;
+  font-size: 15px;
   cursor: pointer;
 }
 
-.new-order-btn_trash {
-  background: #e74c3c;
+.new-order-btn-status {
   color: #fff;
-}
-
-.new-order-btn_edit {
-  color: #fff;
-  background: #1e8449;
+  background: #3633bb;
 }
 
 @media (max-width: 768px) {
@@ -80,6 +81,7 @@
     text-align: right;
     position: relative;
     transition: all 0.2s ease-in;
+    padding-left: 40%;
   }
   .new-order-tbl td::before {
     content: attr(data-label);
@@ -88,6 +90,7 @@
     width: 50%;
     padding-left: 1.2rem;
     text-align: left;
+    margin-right: 20px;
   }
   .new-order-tbl tbody tr td:hover {
     background: #ccc;

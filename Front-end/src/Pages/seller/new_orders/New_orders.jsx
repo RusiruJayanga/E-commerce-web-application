@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { Order_status } from "../../../Components/Modules/order_status/Order_status";
 import "./new_orders.css";
 
 const New_orders = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleButtonClick = (value) => {
+    setModalOpen(false);
+    setMessage(value);
+  };
   return (
     <div>
       <div class="new-order-container">
@@ -9,27 +18,27 @@ const New_orders = () => {
           <table className="new-order-tbl">
             <thead>
               <tr>
-                <th>User ID</th>
-                <th>User ID</th>
-                <th>User Name</th>
-                <th>User Email</th>
+                <th>Order Id</th>
+                <th>Product names</th>
+                <th>Quantitys</th>
+                <th>Price</th>
                 <th>Status</th>
-                <th colspan="2">Action</th>
               </tr>
             </thead>
             <tbody>
               {/* Repeat start */}
               <tr>
-                <td data-label="User Id">0001</td>
-                <td data-label="User Id">0001</td>
-                <td data-label="Name">John Doe</td>
-                <td data-label="Email">John@gmail.com</td>
-                <td data-label="Status">Active</td>
-                <td data-label="Edit">
-                  <button className="new-order-btn_edit"></button>
-                </td>
-                <td data-label="Delete">
-                  <button className="new-order-btn_trash"></button>
+                <td data-label="Order Id">0001</td>
+                <td data-label="Product names">0001</td>
+                <td data-label="Quantity">John Doe</td>
+                <td data-label="Price">John@gmail.com</td>
+                <td data-label="Status">
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="new-order-btn-status"
+                  >
+                    Status
+                  </button>
                 </td>
               </tr>
               {/* Repeat end */}
@@ -37,6 +46,15 @@ const New_orders = () => {
           </table>
         </div>
       </div>
+      {modalOpen &&
+        createPortal(
+          <Order_status
+            closeModal={handleButtonClick}
+            onSubmit={handleButtonClick}
+            onCancel={handleButtonClick}
+          ></Order_status>,
+          document.body
+        )}
     </div>
   );
 };

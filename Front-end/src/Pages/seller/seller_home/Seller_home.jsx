@@ -11,7 +11,6 @@ const Seller_home = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const sellerID = localStorage.getItem("sellerId"); // Retrieve SellerID from localStorage
-  console.log("Retrieved SellerID:", sellerID);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -77,7 +76,7 @@ const Seller_home = () => {
             <tbody>
               {products.map((product) => (
                 <tr key={product._id}>
-                  <td data-label="User Id">
+                  <td>
                     <img
                       className="seller-home-table-image"
                       src={
@@ -87,9 +86,9 @@ const Seller_home = () => {
                       alt={product.ProductName}
                     />
                   </td>
-                  <td data-label="User Id">{product.ProductName}</td>
-                  <td data-label="Name">{product.Quantity}</td>
-                  <td data-label="Email">${product.Price}</td>
+                  <td data-label="Product Name">{product.ProductName}</td>
+                  <td data-label="Quantity">{product.Quantity}</td>
+                  <td data-label="Price">${product.Price}</td>
                   <td data-label="Status">
                     {product.Quantity === 0
                       ? "No Stock"

@@ -1,100 +1,177 @@
-.cart-container {
-  width: 100%;
-  margin-top: 60px;
-  background: #fff;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
-.cart-tbl {
-  width: 100%;
-  border-collapse: collapse;
+span.my {
+  text-align: left;
+  height: 0.4rem;
+  width: auto;
+  height: auto;
+  background-color: white;
+  border-radius: 0.2rem;
+  z-index: 1;
 }
-.cart-tbl thead tr th {
-  font-size: 17px;
-  padding: 0.8rem;
-  font-weight: 400;
-  vertical-align: top;
+
+span.my1 {
+  text-align: end;
+  height: 0.4rem;
+
+  height: auto;
+  background-color: white;
+  border-radius: 0.2rem;
+  z-index: 1;
 }
-.cart-tbl tbody tr td {
-  font-size: 15px;
-  font-weight: 300;
+/* Header */
+.container > h1 {
+  padding: 20px 0;
   text-align: center;
-  border-top: 1px solid #aab7b8;
-  border-bottom: 1px solid #aab7b8;
-  padding: 0.8rem;
 }
-.cart-image {
-  width: 60px;
-  height: 60px;
+
+/* Cart Section */
+.cart {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+/* Products Section */
+.products {
+  flex: 0.75;
+  margin-right: 20px;
+}
+
+.product {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid silver;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.product:hover {
+  border: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transform: scale(1.01);
+}
+
+.product img {
+  width: 300px;
+  height: 200px;
   object-fit: cover;
+}
+
+.product img:hover {
+  transform: scale(1.04);
+}
+
+.product-info {
+  padding: 20px;
+  width: 100%;
+  position: relative;
+}
+
+.product-name,
+.product-price,
+.product-category {
+  margin-bottom: 20px;
+}
+
+.product-remove {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 25px;
+  background-color: green;
+  color: white;
+  cursor: pointer;
   border-radius: 5px;
 }
-.cart-btn_trash {
-  background: #e74c3c;
-  color: #fff;
-  display: inline-block;
-  margin: 0 auto;
-  padding: 0.4rem;
-  width: 60px;
-  height: 30px;
-  border: none;
-  border-radius: 3px;
-  font-size: 15px;
-  cursor: pointer;
-}
-.cart-total-con {
-  width: 170px;
-  height: 100px;
-  margin-left: auto;
-  margin-top: 20px;
-  padding: 10px;
-}
-.cart-total {
-  width: 100%;
-}
-.cart-total-button {
-  width: 150px;
-  height: 40px;
-  border-radius: 3px;
-  border: 1px solid #873e23;
-  font-size: 15px;
-  color: white;
-  background-color: #873e23;
-  transition: 300ms ease-out;
-  margin-top: 20px;
-}
-.cart-total-button:hover {
+
+.product-remove:hover {
   background-color: white;
-  color: #873e23;
+  color: green;
+  font-weight: 600;
+  border: 1px solid green;
 }
-@media (max-width: 768px) {
-  .cart-tbl thead {
+
+.product-quantity input {
+  width: 40px;
+  padding: 5px;
+  text-align: center;
+}
+
+/* Cart Total Section */
+.cart-total {
+  flex: 0.25;
+  flex-grow: 0.25;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  padding: 20px;
+  height: fit-content;
+  border: 1px solid silver;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.cart-total p {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+.cart-total a {
+  display: block;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  background-color: #169716;
+  color: white;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.cart-total a:hover {
+  background-color: #1ca08a;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 700px) {
+  .remove {
     display: none;
   }
-  .cart-tbl tr,
-  .cart-tbl td {
-    display: block;
-    width: 100%;
+
+  .product {
+    height: 150px;
   }
-  .cart-tbl tr {
-    margin-bottom: 1rem;
+
+  .product img {
+    height: 150px;
+    width: 200px;
   }
-  .cart-tbl tbody tr td {
-    text-align: right;
-    position: relative;
-    transition: all 0.2s ease-in;
+
+  .product-name,
+  .product-price,
+  .product-category {
+    margin-bottom: 10px;
   }
-  .cart-tbl td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 50%;
-    padding-left: 1.2rem;
-    text-align: left;
+}
+
+@media screen and (max-width: 900px) {
+  .cart {
+    flex-direction: column;
   }
-  .cart-tbl tbody tr td:hover {
-    background: #ccc;
-    color: #000;
+
+  .cart-total {
+    margin-left: 0;
+    margin-bottom: 20px;
   }
-  .cart-tbl_content {
-    padding: 1rem;
+}
+
+@media screen and (max-width: 1220px) {
+  .container {
+    max-width: 95%;
   }
 }
