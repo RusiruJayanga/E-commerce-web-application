@@ -1,1 +1,62 @@
-/*# sourceMappingURL=seller_profile.css.map */
+.seller-profile-con {
+  margin-top: 60px;
+  width: 78%;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.seller-profile-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  border: 1px solid #873e23;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.seller-profile-detail-con {
+  width: 65%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.seller-profile-detail {
+  width: 280px;
+  height: auto;
+}
+
+@media (max-width: 1427px) {
+  .seller-profile-detail-con {
+    display: block;
+  }
+  .seller-profile-detail {
+    width: 100%;
+    min-height: 70px;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 1170px) {
+  .seller-profile-con {
+    display: block;
+    text-align: center;
+  }
+  .seller-profile-image {
+    margin-bottom: 20px;
+  }
+  .seller-profile-detail-con {
+    width: 70%;
+    margin-inline: auto;
+    text-align: left;
+  }
+}
+@media (max-width: 730px) {
+  .seller-profile-con {
+    width: 100%;
+  }
+  .seller-profile-detail-con {
+    width: 100%;
+  }
+}/*# sourceMappingURL=seller_profile.css.map */

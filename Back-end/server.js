@@ -23,6 +23,8 @@ import WishlistDisplay from "./routes/Wish_list_display_routes.js";
 import AskQuestionReply from "./routes/Ask_questions_reply_route.js";
 import Search from "./routes/Search_routes.js";
 import OrderRouter from "./routes/Order_routes.js";
+import Ordernew from "./routes/Seller_new_order_routes.js";
+import Delivered from "./routes/Seller_delivered_order_routes.js";
 
 const app = express();
 const port = 3000;
@@ -50,6 +52,10 @@ app.use("/api/admincontact", AdmincontactRouter);
 app.use("/api/wishlist", WishlistRouter);
 // Product seller display
 app.use("/api/productssellerdisplay", ProductDisplayRouter);
+// Order new seller display
+app.use("/api/ordernewsellerdisplay", Ordernew);
+// Order new seller display
+app.use("/api/orderdeliveredsellerdisplay", Delivered);
 // Product delete
 app.use("/api/productsdelete", Delete);
 // Product display

@@ -82,7 +82,6 @@ const SellerLogin = async (req, res) => {
 
     // Generate token for the seller
     const token = generateToken(seller._id);
-    console.log("Login successful for seller:", SellerEmail);
 
     return res.status(200).json({
       success: true,

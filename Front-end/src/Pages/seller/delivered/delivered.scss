@@ -8,82 +8,72 @@
   border-collapse: collapse;
 }
 .delivered-tbl thead {
-  background: #424949;
+  background: #251a14;
   color: #fff;
 }
 .delivered-tbl thead tr th {
-  font-size: 0.9rem;
+  font-size: 15px;
+  font-weight: 300;
   padding: 0.8rem;
-  letter-spacing: 0.2rem;
   vertical-align: top;
   border: 1px solid #aab7b8;
 }
+.delivered-table-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 5px;
+}
 .delivered-tbl tbody tr td {
-  font-size: 1rem;
-  letter-spacing: 0.2rem;
-  font-weight: normal;
+  font-size: 15px;
+  font-weight: 300;
   text-align: center;
   border: 1px solid #aab7b8;
   padding: 0.8rem;
 }
+.delivered-qa {
+  height: auto;
+  width: 400px;
+}
 .delivered-tbl tr:nth-child(even) {
-  background: #ccc;
+  background: #f0efeb;
   transition: all 0.3s ease-in;
-  cursor: pointer;
 }
-.delivered-tbl tr:hover td {
-  background: #839192;
-  color: #000;
-  transition: all 0.3s ease-in;
-  cursor: pointer;
-}
-.delivered-tbl button {
-  display: inline-block;
-  border: none;
-  margin: 0 auto;
-  padding: 0.4rem;
-  border-radius: 1px;
-  outline: none;
-  cursor: pointer;
-}
-.delivered-btn_trash {
-  background: #e74c3c;
-  color: #fff;
-}
-.delivered-btn_edit {
-  color: #fff;
-  background: #1e8449;
+.new-order-delivered {
+  background-color: lightgreen;
 }
 @media (max-width: 768px) {
-  .delivered-tbl thead {
+  .new-order-tbl thead {
     display: none;
   }
-  .delivered-tbl tr,
-  .delivered-tbl td {
+  .new-order-tbl tr,
+  .new-order-tbl td {
     display: block;
     width: 100%;
   }
-  .delivered-tbl tr {
+  .new-order-tbl tr {
     margin-bottom: 1rem;
   }
-  .delivered-tbl tbody tr td {
+  .new-order-tbl tbody tr td {
     text-align: right;
     position: relative;
     transition: all 0.2s ease-in;
+    padding-left: 40%;
   }
-  .delivered-tbl td::before {
+  .new-order-tbl td::before {
     content: attr(data-label);
     position: absolute;
     left: 0;
     width: 50%;
     padding-left: 1.2rem;
     text-align: left;
+    margin-right: 20px;
   }
-  .delivered-tbl tbody tr td:hover {
+  .new-order-tbl tbody tr td:hover {
     background: #ccc;
     color: #000;
   }
-  .delivered-tbl_content {
+  .new-order-tbl_content {
     padding: 1rem;
   }
 }

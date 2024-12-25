@@ -89,7 +89,16 @@ const Seller_home = () => {
                   <td data-label="Product Name">{product.ProductName}</td>
                   <td data-label="Quantity">{product.Quantity}</td>
                   <td data-label="Price">${product.Price}</td>
-                  <td data-label="Status">
+                  <td
+                    data-label="Status"
+                    className={`seller-home-${
+                      product.Quantity === 0
+                        ? "No-Stock"
+                        : product.Quantity < 5
+                        ? "Low-Stock"
+                        : "On-Stock"
+                    }`}
+                  >
                     {product.Quantity === 0
                       ? "No Stock"
                       : product.Quantity < 5

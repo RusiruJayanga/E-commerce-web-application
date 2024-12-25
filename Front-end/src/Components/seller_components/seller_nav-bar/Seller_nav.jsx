@@ -1,19 +1,79 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "../../Nav-bar/Nav-bar.css";
 
 const Seller_nav = () => {
   const [manu, set_manue] = useState("Seller_home");
   const [menuOpen, set_menu_open] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if a token exists in localStorage
+    const token = localStorage.getItem("sellertoken");
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleLogout = () => {
+    // Remove the token from localStorage
+    localStorage.removeItem("sellertoken");
+    localStorage.removeItem("sellerId");
+    setIsLoggedIn(false);
+    setDropdownVisible(false);
+    navigate("/"); // Redirect to the home page
+  };
+
   return (
     <div className="Navbar">
       {/* Nav bar top section */}
       <div className="hedder-section">
         <div className="hedder">Green Shopping</div>
         <div className="hedder-right">
-          <Link to="/Seller_profile">
-            <img className="hedder-button" src="user-account.png" alt="" />
-          </Link>
+          <div className="dropdown-container" onClick={toggleDropdown}>
+            <img
+              className="hedder-button"
+              src="user-account.png"
+              alt="Account"
+            />
+            {dropdownVisible && (
+              <div className="dropdown-menu">
+                {isLoggedIn ? (
+                  <>
+                    <Link
+                      to="/Seller_profile"
+                      onClick={() => setDropdownVisible(false)}
+                    >
+                      My Account
+                    </Link>
+                    <button className="logout-button" onClick={handleLogout}>
+                      Log Out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/Login" onClick={() => setDropdownVisible(false)}>
+                      Customer Account
+                    </Link>
+                    <Link
+                      to="/Seller_login"
+                      onClick={() => setDropdownVisible(false)}
+                    >
+                      Seller Account
+                    </Link>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <nav className="manu-section">

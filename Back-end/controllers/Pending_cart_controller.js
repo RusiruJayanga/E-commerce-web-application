@@ -64,13 +64,11 @@ const addToPendingCart = async (req, res) => {
 };
 
 // Fetch pending cart items for a specific customer
-
 const getPendingCartItems = async (req, res) => {
   try {
     const { CustomerID } = req.params;
-    console.log("Received CustomerID:", CustomerID);
 
-    // checking, is customerid is corrector wrong
+    // Validate the CustomerID format
     if (!mongoose.Types.ObjectId.isValid(CustomerID)) {
       return res.status(400).json({
         success: false,
@@ -78,13 +76,13 @@ const getPendingCartItems = async (req, res) => {
       });
     }
 
-    const customerIdObj = new mongoose.Types.ObjectId(CustomerID);
-
     // Fetch cart items using CustomerID
-    const cartItems = await PendingCartModel.find({
-      CustomerID: customerIdObj,
-    }).populate("ProductID");
+    const cartItems = await PendingCartModel.find({ CustomerID }).populate(
+      "ProductID",
+      "ProductName Price ImageFile Category"
+    );
 
+    // Check if no items found
     if (!cartItems || cartItems.length === 0) {
       return res.status(404).json({
         success: false,
@@ -92,6 +90,7 @@ const getPendingCartItems = async (req, res) => {
       });
     }
 
+    // Respond with the fetched cart items
     res.status(200).json({
       success: true,
       cartItems,

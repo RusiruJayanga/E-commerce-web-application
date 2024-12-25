@@ -65,6 +65,14 @@
   background: #3633bb;
 }
 
+.new-order-shipped {
+  background-color: lightskyblue;
+}
+
+.new-order-processing {
+  background-color: lightcoral;
+}
+
 @media (max-width: 768px) {
   .new-order-tbl thead {
     display: none;

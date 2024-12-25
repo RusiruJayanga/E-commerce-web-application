@@ -87,7 +87,10 @@ const Chat = () => {
                   <td data-label="Question" className="seller-chat-qa">
                     {question.Question}
                   </td>
-                  <td data-label="Answer" className="seller-chat-qa">
+                  <td
+                    data-label="Answer"
+                    className={`seller-chat-qa ${question.Answer}`}
+                  >
                     {question.Answer}
                   </td>
                   <td data-label="Action">

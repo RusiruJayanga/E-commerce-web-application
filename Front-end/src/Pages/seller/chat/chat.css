@@ -65,6 +65,10 @@
   background: #3633bb;
 }
 
+.pending {
+  background-color: yellow;
+}
+
 @media (max-width: 768px) {
   .seller-chat-tbl thead {
     display: none;

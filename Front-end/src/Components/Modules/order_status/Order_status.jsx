@@ -2,39 +2,40 @@ import React, { useState } from "react";
 import "./order_status.css";
 
 export const Order_status = ({ onSubmit, closeModal, onCancel }) => {
+  const [status, setStatus] = useState("");
+
+  const handleStatusChange = (e) => {
+    e.preventDefault();
+    onSubmit(status); // Pass the selected status to the parent
+  };
+
   return (
-    <div
-      className="order-status-con"
-      onClick={(e) => {
-        if (e.target.className === "order-status-con") closeModal();
-      }}
-    >
+    <div className="order-status-con" onClick={() => closeModal()}>
       <div className="order-status-modal">
         <div className="order-status-modal-header" onClick={() => closeModal()}>
           <p className="order-status-close">&times;</p>
         </div>
-        <form className="order-status-form">
+        <form className="order-status-form" onSubmit={handleStatusChange}>
           <div className="order-status-input-con">
             <input
-              className="order-status-input"
               type="radio"
-              id="html"
-              name="fav_language"
-              value="HTML"
+              id="shipped"
+              name="status"
+              value="shipped"
+              onChange={(e) => setStatus(e.target.value)}
             />
-              <label for="html">Shipped</label>
+            <label htmlFor="shipped">Shipped</label>
           </div>
           <div className="order-status-input-con">
             <input
-              className="order-status-input"
               type="radio"
-              id="css"
-              name="fav_language"
-              value="CSS"
+              id="delivered"
+              name="status"
+              value="delivered"
+              onChange={(e) => setStatus(e.target.value)}
             />
-              <label for="css">Delivered</label>
+            <label htmlFor="delivered">Delivered</label>
           </div>
-
           <div className="order-status-button">
             <button type="submit" className="btn order-status-btn-submit">
               Update
@@ -42,7 +43,7 @@ export const Order_status = ({ onSubmit, closeModal, onCancel }) => {
             <button
               type="button"
               className="btn order-status-btn-cancel"
-              onClick={() => onCancel()}
+              onClick={onCancel}
             >
               Cancel
             </button>

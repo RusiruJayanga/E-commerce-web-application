@@ -101,7 +101,7 @@ const Cart = () => {
       .toFixed(2);
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     setShowPayPal(true);
     setTimeout(() => {
       const script = document.createElement("script");
@@ -129,12 +129,10 @@ const Cart = () => {
                   `Transaction completed by ${details.payer.name.given_name}`
                 );
 
-                // Prepare order data
                 const orderData = {
                   customerId: localStorage.getItem("customerId"),
                   items: cartItems.map((item) => ({
-                    productId: item._id,
-                    productName: item.ProductName,
+                    productId: item.ProductID._id,
                     quantity: item.Quantity,
                     price: item.Price,
                   })),
@@ -143,7 +141,6 @@ const Cart = () => {
                   paymentStatus: "Completed",
                 };
 
-                // Send order data to the backend
                 const response = await fetch(
                   "http://localhost:3000/api/orders/orderdatasend/",
                   {
@@ -157,7 +154,7 @@ const Cart = () => {
 
                 if (response.ok) {
                   alert("Order placed successfully!");
-                  handleClearCart(); // Clear the cart after successful order placement
+                  handleClearCart();
                 } else {
                   console.error("Error saving order:", await response.json());
                   alert("Failed to save the order. Please contact support.");

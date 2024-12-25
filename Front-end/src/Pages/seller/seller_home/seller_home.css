@@ -65,6 +65,18 @@
   background: #3633bb;
 }
 
+.seller-home-No-Stock {
+  background-color: #e74c3c;
+}
+
+.seller-home-Low-Stock {
+  background-color: yellow;
+}
+
+.seller-home-On-Stock {
+  background-color: lightgreen;
+}
+
 @media (max-width: 768px) {
   .all-product-tbl thead {
     display: none;
