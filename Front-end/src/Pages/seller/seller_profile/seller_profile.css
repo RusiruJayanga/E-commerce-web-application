@@ -20,12 +20,26 @@
   height: auto;
   display: flex;
   flex-wrap: wrap;
+  padding-top: 10px;
   gap: 10px;
 }
 
 .seller-profile-detail {
   width: 280px;
   height: auto;
+}
+
+.seller-profile-topic {
+  color: #873e23;
+}
+
+.seller-profile-p {
+  opacity: 0.6;
+  transition: 300ms ease-out;
+}
+
+.seller-profile-p:hover {
+  opacity: 1;
 }
 
 @media (max-width: 1427px) {

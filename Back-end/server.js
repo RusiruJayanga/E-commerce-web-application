@@ -25,6 +25,8 @@ import Search from "./routes/Search_routes.js";
 import OrderRouter from "./routes/Order_routes.js";
 import Ordernew from "./routes/Seller_new_order_routes.js";
 import Delivered from "./routes/Seller_delivered_order_routes.js";
+import Sellerdetails from "./routes/Seller_account_routes.js";
+import Customerdetails from "./routes/Customer_account_routes.js";
 
 const app = express();
 const port = 3000;
@@ -85,6 +87,10 @@ app.use("/api/productssearch", Search);
 // Attach the router to your app
 app.use("/api/sellers", SellerAuthenticationRouter);
 app.use("/api/orders", OrderRouter);
+// Seller account details
+app.use("/api/selleraccount", Sellerdetails);
+// Seller account details
+app.use("/api/customeraccount", Customerdetails);
 
 app.get("/", (req, res) => {
   res.send("Good to go");

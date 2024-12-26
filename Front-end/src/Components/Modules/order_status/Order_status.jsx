@@ -10,7 +10,12 @@ export const Order_status = ({ onSubmit, closeModal, onCancel }) => {
   };
 
   return (
-    <div className="order-status-con" onClick={() => closeModal()}>
+    <div
+      className="order-status-con"
+      onClick={(e) => {
+        if (e.target.className === "order-status-con") closeModal();
+      }}
+    >
       <div className="order-status-modal">
         <div className="order-status-modal-header" onClick={() => closeModal()}>
           <p className="order-status-close">&times;</p>
