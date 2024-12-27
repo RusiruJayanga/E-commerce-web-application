@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
-import { Order_status } from "../../../Components/Modules/order_status/Order_status";
 import "./delivered.css";
 
 const Delivered = () => {

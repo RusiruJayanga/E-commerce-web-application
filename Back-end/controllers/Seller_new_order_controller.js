@@ -15,14 +15,13 @@ export const getOrdersBySeller = async (req, res) => {
         .json({ success: false, message: "Invalid SellerID format." });
     }
 
-    // Fetch orders for the seller with specific statuses
     const orders = await OrderItem.find({
       SellerID: sellerId,
       status: { $in: ["processing", "shipped"] },
     })
-      .populate("customerId", "CustomerAddress CustomerPhoneNumber") // Include customer details
-      .populate("productId", "ProductName") // Include product details
-      .lean(); // Convert to plain JavaScript objects
+      .populate("customerId", "CustomerAddress CustomerPhoneNumber")
+      .populate("productId", "ProductName")
+      .lean();
 
     if (!orders.length) {
       return res
@@ -63,7 +62,7 @@ export const updateOrderStatus = async (req, res) => {
     const updatedOrder = await OrderItem.findByIdAndUpdate(
       orderItemId,
       { status },
-      { new: true } // Return the updated document
+      { new: true }
     );
 
     if (!updatedOrder) {

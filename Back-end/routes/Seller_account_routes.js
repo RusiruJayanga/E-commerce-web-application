@@ -3,7 +3,6 @@ import { getSelleraccountbyId } from "../controllers/Seller_account_controller.j
 
 const Sellerdetails = express.Router();
 
-// Route to get product by ID
 Sellerdetails.get("/:id", getSelleraccountbyId);
 
 export default Sellerdetails;

@@ -10,7 +10,7 @@ const Seller_home = () => {
   const [editOpen, editModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const sellerID = localStorage.getItem("sellerId"); // Retrieve SellerID from localStorage
+  const sellerID = localStorage.getItem("sellerId");
   useEffect(() => {
     const fetchProducts = async () => {
       try {

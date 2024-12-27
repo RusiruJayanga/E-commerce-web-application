@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios for HTTP requests
+import axios from "axios";
 import "./Seller_signup.css";
 
 const Geolocation = [
@@ -23,7 +23,7 @@ const Seller_signup = () => {
 
   const [errors, setErrors] = useState({});
   const [filePreview, setFilePreview] = useState(null);
-  const navigate = useNavigate(); // Used for navigation after signup
+  const navigate = useNavigate();
   const [apiError, setApiError] = useState("");
 
   const validate = () => {

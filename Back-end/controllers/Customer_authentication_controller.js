@@ -23,7 +23,6 @@ const CustomerLogin = async (req, res) => {
   }
 
   try {
-    // Check if the email exists
     const logexists = await CustomerAuthenticationModel.findOne({
       CustomerEmail,
     });
@@ -34,8 +33,6 @@ const CustomerLogin = async (req, res) => {
         message: "Your email is not registered. Please register.",
       });
     }
-
-    // Compare password
     const isMatch = await bcryptjs.compare(
       CustomerPassword,
       logexists.CustomerPassword
@@ -59,8 +56,8 @@ const CustomerLogin = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Login successful!",
-      customerId: logexists._id, // Include _id in the response
-      token, // Optionally include the token
+      customerId: logexists._id,
+      token,
     });
   } catch (error) {
     console.error(error);
@@ -136,8 +133,8 @@ const CustomerSignup = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "Signup successful!",
-      customerId: savedCustomer._id, // Include _id in the response
-      token, // Include the generated token
+      customerId: savedCustomer._id,
+      token,
     });
   } catch (error) {
     console.error(error.message);

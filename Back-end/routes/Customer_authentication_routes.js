@@ -6,10 +6,8 @@ import {
 
 const CustomerAuthenticationRouter = express.Router();
 
-// Customer signup
 CustomerAuthenticationRouter.post("/customersignup", CustomerSignup);
 
-// Customer login
 CustomerAuthenticationRouter.post("/customerlogin", CustomerLogin);
 
 export default CustomerAuthenticationRouter;

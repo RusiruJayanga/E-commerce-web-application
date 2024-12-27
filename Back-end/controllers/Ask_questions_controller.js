@@ -5,7 +5,6 @@ const AskQuestions = async (req, res) => {
   try {
     const { CustomerID, ProductID, Question, Answer } = req.body;
 
-    // Validate
     if (!CustomerID || !ProductID || !Question) {
       return res.status(400).json({
         success: false,

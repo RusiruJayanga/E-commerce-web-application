@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import axios for HTTP requests
+import axios from "axios";
 import "./contact.css";
 
 const Contact = () => {
@@ -10,8 +10,8 @@ const Contact = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [apiError, setApiError] = useState(""); // To capture any API error message
-  const [isSubmitting, setIsSubmitting] = useState(false); // To disable the form while submitting
+  const [apiError, setApiError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -48,7 +48,7 @@ const Contact = () => {
       Message: formData.message,
     };
 
-    setIsSubmitting(true); // Set submitting state to true
+    setIsSubmitting(true);
 
     try {
       // Sending the form data to the backend

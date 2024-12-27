@@ -6,7 +6,6 @@ const Admincontact = async (req, res) => {
   try {
     const { Name, Email, Message } = req.body;
 
-    // Validate
     if (!Name || !Email || !Message) {
       return res.status(400).json({
         success: false,

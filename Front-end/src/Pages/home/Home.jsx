@@ -60,7 +60,7 @@ const Home = () => {
     navigate(`/Product_details`, { state: { productId } });
   };
 
-  const [visibleProduct, setVisibleProduct] = useState(4); // Initially show 5 questions
+  const [visibleProduct, setVisibleProduct] = useState(4); // Initially show 4 questions
 
   // Show more questions
   const showMoreProduct = () => {

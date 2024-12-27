@@ -15,7 +15,7 @@ const Signup = () => {
   const [errors, setErrors] = useState({});
   const [apiError, setApiError] = useState("");
   const navigate = useNavigate();
-  const location = useLocation(); // To get the previous page
+  const location = useLocation();
 
   const validate = () => {
     const newErrors = {};
@@ -78,7 +78,6 @@ const Signup = () => {
         console.log("Login successful.");
         alert("Signup successful! Welcome!");
 
-        // Redirect to the previous page or home
         navigate("/");
       } else {
         setApiError(response.data.message || "Signup failed.");

@@ -6,10 +6,10 @@ const Update = express.Router();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Store files in the "uploads" directory
+    cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`); // Save only the file name
+    cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
 

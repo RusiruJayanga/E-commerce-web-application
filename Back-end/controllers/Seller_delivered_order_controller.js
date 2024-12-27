@@ -3,7 +3,7 @@ import OrderItem from "../models/Order_item_platform.js";
 import CustomerAuthenticationModel from "../models/Customer_authentication_platform.js";
 import ECommerceModel from "../models/Product_add_platform.js";
 
-// Fetch order items for a specific seller with status "processing" or "shipped"
+// Fetch order items for a specific seller with status "delivered"
 export const getOrdersdeliveredBySeller = async (req, res) => {
   const { sellerId } = req.params;
 
@@ -15,14 +15,13 @@ export const getOrdersdeliveredBySeller = async (req, res) => {
         .json({ success: false, message: "Invalid SellerID format." });
     }
 
-    // Fetch orders for the seller with specific statuses
     const orders = await OrderItem.find({
       SellerID: sellerId,
       status: { $in: ["delivered"] },
     })
-      .populate("customerId", "CustomerAddress CustomerPhoneNumber") // Include customer details
-      .populate("productId", "ProductName") // Include product details
-      .lean(); // Convert to plain JavaScript objects
+      .populate("customerId", "CustomerAddress CustomerPhoneNumber")
+      .populate("productId", "ProductName")
+      .lean();
 
     if (!orders.length) {
       return res

@@ -8,13 +8,11 @@ AskQuestionReply.get("/", async (req, res) => {
   const { sellerId } = req.query;
 
   try {
-    // Fetch questions and populate ProductID
     const questions = await AskQuestionsModel.find().populate({
-      path: "ProductID", // Populate the ProductID reference
-      select: "ProductName SellerID ImageFile", // Fetch ProductName and SellerID from ecommerceproduct
+      path: "ProductID",
+      select: "ProductName SellerID ImageFile",
     });
 
-    // Filter questions where the SellerID matches the given sellerId
     const filteredQuestions = questions.filter(
       (question) => question.ProductID?.SellerID.toString() === sellerId
     );

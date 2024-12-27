@@ -7,7 +7,6 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const { sellerID } = req.query;
 
-  // Check if sellerID is provided
   if (!sellerID) {
     return res.status(400).json({ message: "SellerID is required" });
   }

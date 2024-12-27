@@ -55,11 +55,10 @@ const Login = () => {
       if (response.data.success) {
         // Save token and customerId to localStorage
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("customerId", response.data.customerId); // Save customerId
+        localStorage.setItem("customerId", response.data.customerId);
         console.log("Login successful");
 
         alert("Welcome back!");
-        // Redirect
         navigate("/");
       } else {
         setApiError(response.data.message || "Login failed.");

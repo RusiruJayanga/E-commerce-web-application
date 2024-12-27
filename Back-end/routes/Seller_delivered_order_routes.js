@@ -3,7 +3,6 @@ import { getOrdersdeliveredBySeller } from "../controllers/Seller_delivered_orde
 
 const router = express.Router();
 
-// Fetch order items for a specific seller
 router.get("/:sellerId", getOrdersdeliveredBySeller);
 
 export default router;

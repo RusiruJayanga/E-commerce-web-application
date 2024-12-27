@@ -135,7 +135,7 @@ const Product_details = () => {
     }
   }, [productId]);
 
-  const [visibleQuestions, setVisibleQuestions] = useState(3); // Initially show 5 questions
+  const [visibleQuestions, setVisibleQuestions] = useState(3); // Initially show 3 questions
 
   // Show more questions
   const showMoreQuestions = () => {

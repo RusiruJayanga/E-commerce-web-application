@@ -7,7 +7,6 @@ import {
 
 const PendingCartRouter = express.Router();
 
-// Route to add items to the pending cart
 PendingCartRouter.post("/pendingcartadd", addToPendingCart);
 
 PendingCartRouter.get("/pendingcartfetch/:CustomerID", getPendingCartItems);

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-//create schema for pendingcart/for cart
+
 const PendingCartSchema = new mongoose.Schema({
   CustomerID: {
     type: mongoose.Schema.Types.ObjectId,

@@ -5,7 +5,7 @@ import "./Nav-bar.css";
 const Navbar = () => {
   const [manu, set_manue] = useState("Home");
   const [menuOpen, set_menu_open] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const Navbar = () => {
     localStorage.removeItem("customerId");
     setIsLoggedIn(false);
     setDropdownVisible(false);
-    navigate("/"); // Redirect to the home page
+    navigate("/");
   };
 
   return (

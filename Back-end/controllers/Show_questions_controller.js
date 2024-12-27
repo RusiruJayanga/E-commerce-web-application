@@ -10,8 +10,8 @@ const getQuestionsByProductId = async (req, res) => {
     }).populate({
       path: "ProductID",
       populate: {
-        path: "SellerID", // Populate SellerID from the Product model
-        select: "LogoImageFile", // Only select the LogoImageFile field
+        path: "SellerID",
+        select: "LogoImageFile",
       },
     });
 

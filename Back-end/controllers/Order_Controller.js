@@ -1,6 +1,6 @@
 import Order from "../models/Order_platform.js";
 import OrderItem from "../models/Order_item_platform.js";
-import ECommerceModel from "../models/Product_add_platform.js"; // Assuming this is your product model
+import ECommerceModel from "../models/Product_add_platform.js";
 
 // Creating an order with individual products as separate documents
 export const createOrder = async (req, res) => {
@@ -34,13 +34,13 @@ export const createOrder = async (req, res) => {
       }
 
       const newOrderItem = new OrderItem({
-        customerId, // From request body
-        SellerID: product.SellerID, // From referenced product document
-        orderId: savedOrder._id, // Linked to the main order
+        customerId,
+        SellerID: product.SellerID,
+        orderId: savedOrder._id,
         productId: item.productId,
         quantity: item.quantity,
         price: item.price,
-        status: "processing", // Default status
+        status: "processing",
       });
 
       await newOrderItem.save();

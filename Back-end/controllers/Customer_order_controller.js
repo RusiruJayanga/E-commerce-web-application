@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import OrderItem from "../models/Order_item_platform.js";
 
-// Controller to get order items by CustomerID
+// Get order items by CustomerID
 const getOrdersByCustomerId = async (req, res) => {
   try {
     const { customerId } = req.query;
@@ -14,7 +14,6 @@ const getOrdersByCustomerId = async (req, res) => {
       });
     }
 
-    // Find orders for the given CustomerID
     const orders = await OrderItem.find({ customerId })
       .populate({
         path: "productId",

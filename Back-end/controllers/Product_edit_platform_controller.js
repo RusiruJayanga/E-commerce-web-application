@@ -38,7 +38,7 @@ const updateProduct = async (req, res) => {
 
     // Update the image if a new one is uploaded
     if (req.file) {
-      product.ImageFile = req.file.filename; // Store only the file name
+      product.ImageFile = req.file.filename;
     }
 
     // Save the updated product

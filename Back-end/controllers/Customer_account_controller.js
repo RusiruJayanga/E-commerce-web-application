@@ -1,6 +1,6 @@
 import CustomerAuthenticationModel from "../models/Customer_authentication_platform.js";
 
-// Get product by ID
+// Get customer by ID
 export const getCustomeraccountbyId = async (req, res) => {
   try {
     const { id } = req.params;
