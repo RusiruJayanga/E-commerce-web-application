@@ -27,6 +27,8 @@ import Ordernew from "./routes/Seller_new_order_routes.js";
 import Delivered from "./routes/Seller_delivered_order_routes.js";
 import Sellerdetails from "./routes/Seller_account_routes.js";
 import Customerdetails from "./routes/Customer_account_routes.js";
+import Reply from "./routes/Show_reply_routes.js";
+import Orderscustomer from "./routes/Customer_order_routes.js";
 
 const app = express();
 const port = 3000;
@@ -89,8 +91,12 @@ app.use("/api/sellers", SellerAuthenticationRouter);
 app.use("/api/orders", OrderRouter);
 // Seller account details
 app.use("/api/selleraccount", Sellerdetails);
-// Seller account details
+// Customer account details
 app.use("/api/customeraccount", Customerdetails);
+// Customer reply questions
+app.use("/api/customerreply", Reply);
+// Customer orders
+app.use("/api/customerorder", Orderscustomer);
 
 app.get("/", (req, res) => {
   res.send("Good to go");
