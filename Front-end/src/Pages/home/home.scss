@@ -13,7 +13,12 @@
   background-image: url("section1-main-bg.jpeg");
 }
 .home-bg2 {
-  background-image: url("section1-main-bg.jpeg");
+  background-image: linear-gradient(
+      90deg,
+      rgba(240, 239, 235, 0.8963235294117647) 0%,
+      rgba(240, 239, 235, 0.4150910364145658) 100%
+    ),
+    url("section2-main-bg.jpeg");
 }
 .section-image-left {
   width: 500px;
@@ -33,6 +38,7 @@
   background-color: #873e23;
   transition: 300ms ease-out;
   border: none;
+  cursor: pointer;
 }
 .section-image-button:hover {
   background-color: white;
@@ -109,7 +115,7 @@
   border-radius: 10px;
 }
 .section2-img {
-  width: 400px;
+  width: auto;
   height: 450px;
   object-fit: cover;
 }
@@ -132,6 +138,9 @@
 .section2-dis-li {
   font-size: 15px;
   font-weight: 300;
+}
+.section2-right-img {
+  width: 300px;
 }
 @media only screen and (max-width: 1333px) {
   .section2 {

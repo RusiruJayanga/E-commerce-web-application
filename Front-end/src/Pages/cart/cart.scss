@@ -38,6 +38,7 @@ span.my1 {
 .products {
   flex: 0.75;
   margin-right: 20px;
+  width: 70%;
 }
 
 .product {
@@ -45,15 +46,8 @@ span.my1 {
   width: 100%;
   height: 200px;
   overflow: hidden;
-  border: 1px solid silver;
   margin-bottom: 20px;
   position: relative;
-}
-
-.product:hover {
-  border: none;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  transform: scale(1.01);
 }
 
 .product img {
@@ -67,33 +61,32 @@ span.my1 {
 }
 
 .product-info {
-  padding: 20px;
   width: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-name,
-.product-price,
-.product-category {
-  margin-bottom: 20px;
+.product-quantity,
+.product-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 170px;
 }
 
 .product-remove {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 25px;
-  background-color: green;
+  width: 110px;
+  height: 40px;
+  border-radius: 3px;
+  font-size: 15px;
   color: white;
+  background-color: #e74c3c;
+  border: none;
   cursor: pointer;
-  border-radius: 5px;
-}
-
-.product-remove:hover {
-  background-color: white;
-  color: green;
-  font-weight: 600;
-  border: 1px solid green;
 }
 
 .product-quantity input {
@@ -110,9 +103,10 @@ span.my1 {
   flex-basis: 0%;
   padding: 20px;
   height: fit-content;
-  border: 1px solid silver;
+  border: 1px solid #873e23;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #f0efeb;
+  z-index: 10;
 }
 
 .cart-total p {
@@ -121,20 +115,23 @@ span.my1 {
   margin-bottom: 30px;
   font-size: 20px;
 }
-
-.cart-total a {
-  display: block;
-  text-align: center;
-  height: 40px;
-  line-height: 40px;
-  background-color: #169716;
-  color: white;
-  text-decoration: none;
-  margin-top: 20px;
+.cart-total p span {
+  background-color: #f0efeb;
 }
 
-.cart-total a:hover {
-  background-color: #1ca08a;
+.checkout-button {
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+  font-size: 15px;
+  color: white;
+  background-color: #3633bb;
+  transition: 300ms ease-out;
+  border: none;
+  cursor: pointer;
+}
+.checkout-button:hover {
+  background-color: #07058d;
 }
 
 /* Responsive Styles */

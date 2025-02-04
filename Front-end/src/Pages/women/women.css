@@ -1,9 +1,9 @@
 .section-women {
-  height: 150px;
+  height: 350px;
   width: 100%;
   margin-top: 30px;
   border-radius: 5px;
-  background-image: url("section1-main-bg.jpeg");
+  background-image: linear-gradient(90deg, rgba(240, 239, 235, 0.2963235294) 0%, rgba(240, 239, 235, 0.1150910364) 100%), url("section-women-bg.png");
   background-repeat: no-repeat;
   display: flex;
   background-size: cover;

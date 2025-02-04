@@ -83,29 +83,26 @@ const Contact = () => {
           <div className="contact-address details">
             <img className="contact-icon" src="wish-list.png" alt="" />
             <h4>Address</h4>
-            <p>Lorem ipsum dolor sit</p>
-            <p>Lorem ipsum dolor sit</p>
+            <p>Pitipana - Thalagala Rd,Homagama</p>
           </div>
           <div className="contact-phone details">
             <img className="contact-icon" src="wish-list.png" alt="" />
             <h4>Phone</h4>
-            <p>Lorem ipsum dolor sit</p>
-            <p>Lorem ipsum dolor sit</p>
+            <p>0115 445 000</p>
           </div>
           <div className="contact-email details">
             <img className="contact-icon" src="wish-list.png" alt="" />
             <h4>Email</h4>
-            <p>Lorem ipsum dolor sit</p>
-            <p>Lorem ipsum dolor sit</p>
+            <p>0115 445 000</p>
           </div>
         </div>
         <div className="contact-right-side">
           <h3 className="text-hili">Send us a message</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel vitae
-            quae inventore reiciendis deserunt. Temporibus impedit quae aliquid
-            fugit at maiores consectetur ipsum odio velit sunt cupiditate minus,
-            modi numquam.
+            Step into a world of luxury, elegance, and exclusivity with us, the
+            premier high-end fashion e-commerce platform. We bring you a curated
+            selection of the finest designer clothing, accessories, and footwear
+            from the most prestigious brands around the world.
           </p>
           <form className="gap" onSubmit={handleSubmit}>
             <div className="contact-input-box">

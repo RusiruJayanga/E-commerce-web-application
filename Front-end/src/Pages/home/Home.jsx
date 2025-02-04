@@ -73,11 +73,9 @@ const Home = () => {
       <section className="section-image home-bg1">
         <div className="section-image-left">
           <div>
-            <h4 className="text-hili">Lorem ipsum dolor sit </h4>
+            <h4 className="text-hili">LOWEST PRICES OF THE YEAR</h4>
             <h1>BLACK FRIDAY</h1>
-            <p>
-              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
-            </p>
+            <p>It's Black Friday. Yes, we are shopping more than ever!</p>
             <button className="section-image-button">Shop Now</button>
           </div>
         </div>
@@ -179,45 +177,54 @@ const Home = () => {
 
       {/* Img section 2 */}
       <section className="section-image home-bg2">
-        <div className="section-image-left">
-          <div>
-            <h4 className="text-hili">Lorem ipsum dolor sit </h4>
-            <h1>BLACK FRIDAY</h1>
-            <p>
-              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
-            </p>
-          </div>
-        </div>
         <div className="section-image-right">
           <img
-            className="section-image-img"
-            src="section1-right-img.png"
+            className="section-image-img section2-right-img"
+            src="section2-right-img.png"
             alt=""
           />
+        </div>
+        <div className="section-image-left">
+          <div>
+            <h4 className="text-hili">MENSWEAR BRAND</h4>
+            <h1>Ultimate FASHION</h1>
+            <p>Style That Speaks Elevate Your Elegance</p>
+          </div>
         </div>
       </section>
       {/* Dit section */}
       <section className="section2">
         <div className="section2-card">
-          <img className="section2-img" src="section2-main-bg.jpeg" alt="" />
+          <img className="section2-img" src="section3-main-bg.jpeg" alt="" />
           <div className="section2-dis">
-            <h4 className="section2-dis-head text-hili">Lorem ipsum dolor</h4>
+            <h4 className="section2-dis-head text-hili">Green Shopping</h4>
             <p className="section2-dis-text">
-              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor
-              sitLorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
-              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor
-              sitLorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
-              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor
-              sitLorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
-              Lorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor
-              sitLorem ipsum dolor sitLorem ipsum dolor sitLorem ipsum dolor sit
+              Step into a world of luxury, elegance, and exclusivity with us,
+              the premier high-end fashion e-commerce platform. We bring you a
+              curated selection of the finest designer clothing, accessories,
+              and footwear from the most prestigious brands around the world.
             </p>
             <ul className="section2-dis-li">
-              <li>Lorem ipsum dolor sitLorem </li>
-              <li>Lorem ipsum dolor sitLorem </li>
-              <li>Lorem ipsum dolor sitLorem </li>
-              <li>Lorem ipsum dolor sitLorem </li>
-              <li>Lorem ipsum dolor sitLorem </li>
+              <li>
+                Exclusive Designer Collections – Handpicked luxury fashion from
+                renowned designers.
+              </li>
+              <li>
+                Unparalleled Quality – Premium fabrics, exquisite craftsmanship,
+                and timeless elegance.
+              </li>
+              <li>
+                Seamless Shopping Experience – Intuitive interface, secure
+                transactions, and fast delivery.
+              </li>
+              <li>
+                Personalized Styling Services – Get expert fashion advice
+                tailored to your taste.
+              </li>
+              <li>
+                VIP Membership & Rewards – Enjoy early access to new
+                collections, special discounts, and more!
+              </li>
             </ul>
           </div>
         </div>

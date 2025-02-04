@@ -41,12 +41,7 @@ const Footer = () => {
           </div>
           <div className="footer-col">
             <h4>Newsletter</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-              iusto fugiat suscipit provident temporibus placeat eum nam? Est,
-              consequatur maxime recusandae ut nobis nihil mollitia? Dolorum
-              nostrum maiores molestias eveniet.
-            </p>
+
             <div className="icons">
               <Link to="/Contact">
                 <button className="footer-contact-button">Contact</button>

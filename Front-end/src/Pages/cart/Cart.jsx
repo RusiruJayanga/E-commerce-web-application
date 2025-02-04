@@ -10,7 +10,8 @@ const Cart = () => {
   useEffect(() => {
     const customerId = localStorage.getItem("customerId");
     console.log("Customer ID:", customerId);
-
+    const customerEmail = localStorage.getItem("customerEmail");
+    console.log("Customer Email:", customerEmail);
     if (!customerId) {
       setError("Empty Cart");
       setLoading(false);
@@ -78,9 +79,32 @@ const Cart = () => {
     }
   };
 
-  const handleClearCart = () => {
-    setCartItems([]);
-    localStorage.removeItem("customerId");
+  // Cart clear
+  const handleClearCart = async () => {
+    const customerId = localStorage.getItem("customerId");
+
+    if (!customerId) {
+      alert("No customer ID found. Please log in.");
+      return;
+    }
+
+    try {
+      const apiUrl = `http://localhost:3000/api/pendingcart/pendingcartclear/${customerId}`;
+      const response = await fetch(apiUrl, { method: "DELETE" });
+
+      if (response.ok) {
+        setCartItems([]);
+        localStorage.removeItem("cart");
+        alert("Cart cleared successfully.");
+      } else {
+        const errorData = await response.json();
+        console.error("Error clearing cart:", errorData.message);
+        alert("Failed to clear the cart. Please try again.");
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      alert("An error occurred while clearing the cart.");
+    }
   };
 
   const handleQuantityChange = (itemId, newQuantity) => {
@@ -154,7 +178,56 @@ const Cart = () => {
 
                 if (response.ok) {
                   alert("Order placed successfully!");
-                  handleClearCart();
+
+                  // Clear the pending cart from the database
+                  const customerId = localStorage.getItem("customerId");
+                  const clearCartResponse = await fetch(
+                    `http://localhost:3000/api/pendingcart/pendingcartclear/${customerId}`,
+                    { method: "DELETE" }
+                  );
+
+                  if (clearCartResponse.ok) {
+                    // Clear local state and local storage
+                    setCartItems([]);
+                    localStorage.removeItem("cart");
+                    alert("Checkout successful! Cart cleared successfully.");
+                  } else {
+                    const clearCartError = await clearCartResponse.json();
+                    console.error(
+                      "Error clearing cart:",
+                      clearCartError.message
+                    );
+                    alert(
+                      "Checkout successful, but failed to clear the cart. Please try again."
+                    );
+                  }
+
+                  // Send confirmation email (if necessary)
+                  const customerEmail = localStorage.getItem("customerEmail");
+                  if (customerEmail) {
+                    const emailResponse = await fetch(
+                      "http://localhost:3000/api/email/send-email",
+                      {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          to: customerEmail,
+                          subject: "Order Confirmation",
+                          text: `Dear customer, your payment of $${getTotal()} has been successfully received. Thank you for shopping with us!`,
+                        }),
+                      }
+                    );
+
+                    if (!emailResponse.ok) {
+                      console.error(
+                        "Email sending failed:",
+                        await emailResponse.text()
+                      );
+                      alert(
+                        "Failed to send confirmation email. Please contact support."
+                      );
+                    }
+                  }
                 } else {
                   console.error("Error saving order:", await response.json());
                   alert("Failed to save the order. Please contact support.");
@@ -164,6 +237,7 @@ const Cart = () => {
                 alert("An error occurred during payment processing.");
               }
             },
+
             onError: (err) => {
               console.error("PayPal Checkout error:", err);
             },
@@ -184,7 +258,6 @@ const Cart = () => {
 
   return (
     <div className="container">
-      <h1>Shopping Cart</h1>
       <div className="cart">
         <div className="products">
           {cartItems.length === 0 ? (
@@ -198,7 +271,6 @@ const Cart = () => {
                 />
                 <div className="product-info">
                   <h3 className="product-name">{item.ProductName}</h3>
-                  <p className="product-price">Rs. {item.Price}</p>
                   <p className="product-quantity">
                     Quantity:
                     <input
@@ -212,14 +284,14 @@ const Cart = () => {
                     />
                   </p>
                   <p className="product-total">
-                    Item Total: Rs. {(item.Price * item.Quantity).toFixed(2)}
+                    Item Total: $. {(item.Price * item.Quantity).toFixed(2)}
                   </p>
-                  <p
+                  <button
                     className="product-remove"
                     onClick={() => handleRemoveItem(item._id)}
                   >
                     Remove
-                  </p>
+                  </button>
                 </div>
               </div>
             ))
@@ -229,7 +301,7 @@ const Cart = () => {
         <div className="cart-total">
           <p>
             <span className="my">Total Price</span>
-            <span className="my1">Rs. {getTotal()}</span>
+            <span className="my1">$. {getTotal()}</span>
           </p>
           <p>
             <span className="my">Number of Items</span>
@@ -239,16 +311,22 @@ const Cart = () => {
           </p>
           <p>
             <span className="my">You Save</span>
-            <span className="my1">Rs. 0.00</span>
+            <span className="my1">$. 0.00</span>
           </p>
-          <button onClick={handleCheckout} style={{ marginBottom: "20px" }}>
+          <button
+            className="checkout-button"
+            onClick={handleCheckout}
+            style={{ marginBottom: "20px" }}
+          >
             Proceed to Checkout
           </button>
           {showPayPal && <div id="paypal-button-container"></div>}
         </div>
       </div>
 
-      <button onClick={handleClearCart}>Clear Cart</button>
+      <button className="product-remove" onClick={handleClearCart}>
+        Clear Cart
+      </button>
     </div>
   );
 };

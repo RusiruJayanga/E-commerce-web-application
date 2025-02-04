@@ -64,11 +64,12 @@ const addToPendingCart = async (req, res) => {
 };
 
 // Fetch pending cart items for a specific customer
+
 const getPendingCartItems = async (req, res) => {
   try {
     const { CustomerID } = req.params;
 
-    // Validate the CustomerID format
+    // checking, is customerid is corrector wrong
     if (!mongoose.Types.ObjectId.isValid(CustomerID)) {
       return res.status(400).json({
         success: false,
@@ -76,13 +77,13 @@ const getPendingCartItems = async (req, res) => {
       });
     }
 
-    // Fetch cart items using CustomerID
-    const cartItems = await PendingCartModel.find({ CustomerID }).populate(
-      "ProductID",
-      "ProductName Price ImageFile Category"
-    );
+    const customerIdObj = new mongoose.Types.ObjectId(CustomerID);
 
-    // Check if no items found
+    // Fetch cart items using CustomerID
+    const cartItems = await PendingCartModel.find({
+      CustomerID: customerIdObj,
+    }).populate("ProductID");
+
     if (!cartItems || cartItems.length === 0) {
       return res.status(404).json({
         success: false,
@@ -90,7 +91,6 @@ const getPendingCartItems = async (req, res) => {
       });
     }
 
-    // Respond with the fetched cart items
     res.status(200).json({
       success: true,
       cartItems,
@@ -107,7 +107,6 @@ const getPendingCartItems = async (req, res) => {
 //remove items from cart
 const removeFromPendingCart = async (req, res) => {
   const { id } = req.params;
-  console.log(`Received ProductID: ${id}`);
 
   if (!id) {
     return res.status(400).json({ error: "ProductID is required" });
@@ -133,4 +132,44 @@ const removeFromPendingCart = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
-export { addToPendingCart, getPendingCartItems, removeFromPendingCart };
+
+// Clear all items in the cart for a specific customer
+const clearPendingCart = async (req, res) => {
+  const { CustomerID } = req.params;
+
+  try {
+    // Validate the CustomerID
+    if (!mongoose.Types.ObjectId.isValid(CustomerID)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid CustomerID format.",
+      });
+    }
+    const result = await PendingCartModel.deleteMany({ CustomerID });
+
+    if (result.deletedCount > 0) {
+      res.status(200).json({
+        success: true,
+        message: "Cart cleared successfully.",
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "No items found in the cart.",
+      });
+    }
+  } catch (error) {
+    console.error("Error clearing cart:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to clear cart.",
+    });
+  }
+};
+
+export {
+  addToPendingCart,
+  getPendingCartItems,
+  removeFromPendingCart,
+  clearPendingCart,
+};
