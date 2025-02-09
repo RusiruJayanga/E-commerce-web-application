@@ -2,10 +2,11 @@
 <h4 align="left">LANGUAGES AND TOOLS :</h3>
 <p align="left"> 
 <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="language-icons/React-Dark.svg" alt="react" width="40" height="40"/> </a>
+<a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="language-icons/CSS.svg" alt="css3" width="40" height="40"/> </a>
 <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="language-icons/NodeJS-Dark.svg" alt="nodejs" width="40" height="40"/> </a>
 <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="language-icons/ExpressJS-Dark.svg" alt="express" width="40" height="40"/> </a>
 <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="language-icons/MongoDB.svg" alt="mongodb" width="40" height="40"/> </a>
-<a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="language-icons/CSS.svg" alt="css3" width="40" height="40"/> </a>
+
 
 <p align="left">This is a full-stack E-commerce platform built using the MERN stack (MongoDB Atlas, Express.js, React.js, Node.js) for the PUSL3120 - Full Stack Development module coursework. The platform connects customers, sellers, and admins, enabling seamless online shopping and product management.</p>
 <h4 align="left">Key Features :</h4>
