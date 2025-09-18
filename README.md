@@ -1,6 +1,6 @@
 <h2 align="left">E-commerce-web-application</h2><br/>
 
-<h4 align="left">LANGUAGES AND TOOLS </h4>
+<h4 align="left">LANGUAGES AND TOOLS</h4>
 <p align="left"> 
 <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="Readme_img/React-Dark.svg" alt="react" width="40" height="40"/> </a>
 <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="Readme_img/HTML.svg" alt="html5" width="40" height="40"/> </a>
